@@ -1,6 +1,7 @@
 #pragma once
 #pragma warning (disable : 4996)
 #include "Crew.h"
+#include <string>
 
 class Pilot :
 	public Crew
@@ -14,7 +15,7 @@ public:
 	bool setLicenseNumber(int number);
 
 	// Constructors & Destructors
-	Pilot(const int eid, const char* newName, const int licenseNum) : Crew(eid, newName)
+	Pilot(const int eid, const string newName, const int licenseNum) : Crew(eid, newName)
 	{
 		this->licenseNumber = licenseNum;
 	}

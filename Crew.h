@@ -13,12 +13,11 @@ protected:
 	std::string name;
 
 	// Constructors & Destructors
-	Crew(const int eid, const char* newName) // constructor in 'protected' to make the class abstract
+	Crew(const int eid, const string newName) // constructor in 'protected' to make the class abstract
 	{
 		this->employeeID = eid;
-
-		this->name = new char[strlen(newName) + 1];
 		this->name = newName;
+	
 	}
 
 public:
