@@ -145,7 +145,6 @@
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="Flight.cpp" />
     <ClCompile Include="FlightManager.cpp" />
-    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Luggage.cpp" />
     <ClCompile Include="Pilot.cpp" />
     <ClCompile Include="Plane.cpp" />
