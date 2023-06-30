@@ -3,19 +3,15 @@
 #include "Plane.h"
 
 
-char* Plane::getModel() const
+std::string Plane::getModel() const
 {
     return model;
 }
 
-bool Plane::setModel(char* plane_model)
+bool Plane::setModel(const std::string& plane_model)
 {
-	delete[] model;
-	model = new char[strlen(plane_model) + 1];
-	if (model == nullptr)
-		return false;
-	strcpy(model, plane_model);
-	return true;
+    model = plane_model;
+    return true;
 }
 
 Seat* Plane::getSeatAt(int row, int col)
@@ -114,12 +110,11 @@ bool Plane::removeCustomer(Customer* cust)
     return false;
 }
 
-bool Plane::removeCustomer(const char* name)
+bool Plane::removeCustomer(const std::string name)
 {
     for (int i = 0; i < ROWS_IN_PLANE; i++) {
         for (int j = 0; j < SEATS_PER_ROW; j++) {
-            if ((getSeatAt(i, j)->isOccupied()) && (strcmp(getSeatAt(i, j)->getCustomer()->getName(), name)))
-            {
+            if (getSeatAt(i, j)->isOccupied() && getSeatAt(i, j)->getCustomer()->getName() == name) {
                 getSeatAt(i, j)->sitCustomerC(nullptr);
                 return true;
             }
