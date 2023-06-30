@@ -336,7 +336,7 @@ bool Flight::addCustomer(Customer& c, const int row, const int col)
 	return plane->addCustomer(&c, row, col);
 }
 
-bool Flight::removeCustomerByName(char* name)
+bool Flight::removeCustomerByName(string name)
 {
 	return plane->removeCustomer(name);
 }
@@ -346,7 +346,7 @@ bool Flight::removeCustomerBySeat(int seatRow, int seatCol)
 	return plane->getSeatAt(seatRow,seatCol)->sitCustomerC(nullptr);
 }
 
-bool Flight::resitCustomerByName(char* name, int seatRow, int seatCol)
+bool Flight::resitCustomerByName(string name, int seatRow, int seatCol)
 {
 	Customer* c = plane->getSeatAt(seatRow,seatCol)->getCustomer();
 	if (plane->removeCustomer(c->getName()))
@@ -364,7 +364,7 @@ bool Flight::resitCustomerBySeat(int oldSeatRow, int oldSeatColumn, int newSeatR
 		return false;
 }
 
-bool Flight::changeCustomerLuggageByName(char* name, Luggage* newLuggage)
+bool Flight::changeCustomerLuggageByName(string name, Luggage* newLuggage)
 {
 	int size = 0;
 	Customer** c = plane->getCustomers();
@@ -374,7 +374,7 @@ bool Flight::changeCustomerLuggageByName(char* name, Luggage* newLuggage)
 	}
 	for (int i = 0; i < size; i++) 
 	{
-		if (strcmp(c[i]->getName(), name) == 0)
+		if (c[i]->getName() == name)
 			return c[i]->changeLuggage(*newLuggage);
 	}
 	return false;
@@ -385,9 +385,9 @@ void Flight::showFlight()
 	plane->showSeats();
 }
 
-char* Flight::getStatusAt(tm& time)
+string Flight::getStatusAt(tm& time)
 {
-	const char* status;
+	 string status = "";
 
 	if (*this > time)
 		status = "The flight hasn't taken off yet\n";
@@ -396,11 +396,9 @@ char* Flight::getStatusAt(tm& time)
 	else
 		status = "The flight is currently underway\n";
 
-	// Create a copy of the status string
-	char* statusCopy = new char[strlen(status) + 1];
-	strcpy(statusCopy, status);
+	
 
-	return statusCopy;
+	return status;
 }
 
 //Check if time is before take off

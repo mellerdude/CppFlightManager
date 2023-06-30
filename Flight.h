@@ -90,15 +90,15 @@ public:
 
 	// Customer Methods
 	bool addCustomer(Customer& c, const int row, const int col);
-	bool removeCustomerByName(char* name);
+	bool removeCustomerByName(string name);
 	bool removeCustomerBySeat(int seatRow, int seatCol);
-	bool resitCustomerByName(char* name, int seatRow, int seatColumn);
+	bool resitCustomerByName(string name, int seatRow, int seatColumn);
 	bool resitCustomerBySeat(int oldSeatRow, int oldSeatColumn, int newSeatRow, int newSeatColumn);
-	bool changeCustomerLuggageByName(char* name, Luggage* newLuggage);
+	bool changeCustomerLuggageByName(string name, Luggage* newLuggage);
 
 	// General Flight details methods
 	void showFlight();						// show minimal details about the flight itself
-	char* getStatusAt(tm& time);	// returns the state of the flight at [time]. E.G.: at 7:00 the flight has not left. at 16:00 the flight has landed.
+	string getStatusAt(tm& time);	// returns the state of the flight at [time]. E.G.: at 7:00 the flight has not left. at 16:00 the flight has landed.
 
 	// Operators
 	bool operator<(tm& time) const;

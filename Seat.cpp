@@ -3,7 +3,7 @@
 bool Seat::operator==(Customer& cust) const
 {	
 	if(this->customer != nullptr && &cust != nullptr)
-		return strcmp(customer->getTicketNumber(),cust.getTicketNumber()) == 0;
+		return customer->getTicketNumber() == cust.getTicketNumber();
 	return false;
 }
 
@@ -11,6 +11,6 @@ bool Seat::operator==(Customer& cust) const
 bool Seat::operator==(Seat& seat) const
 {
 	if(this->customer != nullptr && seat.getCustomer() != nullptr)
-		return strcmp(this->customer->getTicketNumber(),seat.customer->getTicketNumber()) == 0;
+		return this->customer->getTicketNumber() == seat.customer->getTicketNumber();
 	return false;
 }

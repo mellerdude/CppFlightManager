@@ -1,32 +1,24 @@
 #include "Customer.h"
 
-char* Customer::getTicketNumber()
+string Customer::getTicketNumber()
 {
 	return ticketNumber;
 }
 
-bool Customer::setTicketNumber(char* ticketNum)
+bool Customer::setTicketNumber(string ticketNum)
 {
-	delete[] ticketNumber;
-	ticketNumber = new char[strlen(ticketNum) + 1];
-	if (ticketNumber == nullptr)
-		return false;
-	strcpy(ticketNumber, ticketNum);
+	ticketNumber =  ticketNum;
 	return true;
 }
 
-char* Customer::getName()
+string Customer::getName()
 {
 	return name;
 }
 
 bool Customer::setName(char* n)
 {
-	delete[] name;
-	name = new char[strlen(n) + 1];
-	if (name == nullptr)
-		return false;
-	strcpy(name, n);
+	name=n;
 	return true;
 }
 

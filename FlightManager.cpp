@@ -68,7 +68,7 @@ Luggage* getNewLuggage()
 }
 Pilot* getANewPilot()
 {
-	const char* pilotNames[] =
+	const string pilotNames[] =
 	{
 		"Bruce Lee the fighter Jet",
 		"Woking Nao, the chinese prodigy",
@@ -86,7 +86,7 @@ Pilot* getANewPilot()
 }
 Attendant* getANewAttendant()
 {
-	const char* attendantNames[] =
+	const string attendantNames[] =
 	{
 		"Delores hates everyone",
 		"Woking nao",
@@ -101,7 +101,7 @@ Attendant* getANewAttendant()
 }
 SecurityGuard* getANewSecurityGuard()
 {
-	const char* guardsNames[] =
+	const string guardsNames[] =
 	{
 		"PEW PEW PEW",
 		"Yew shal newt pas",
@@ -111,7 +111,7 @@ SecurityGuard* getANewSecurityGuard()
 		"Revoked Driver Liscence number 5"
 	};
 
-	const char* weaponNames[] =
+	const string weaponNames[] =
 	{
 		"Magnum choclate",
 		"Rocket launcher 555",
@@ -123,11 +123,14 @@ SecurityGuard* getANewSecurityGuard()
 
 	int r = rand() % (end(guardsNames) - begin(guardsNames));
 	int p = rand() % (end(weaponNames) - begin(weaponNames));
-	return new SecurityGuard("SpecialTicket", guardsNames[r], *getNewLuggage(), employeeID++, weaponNames[p]);
+
+	string type = "SpecialTicket";
+	//return new SecurityGuard();
+	return new SecurityGuard(type, guardsNames[r], *getNewLuggage(), employeeID++, weaponNames[p]);
 }
 Plane* makeNewPlane()
 {
-	const char* planeModels[] =
+	const string planeModels[] =
 	{
 		"Bravo Alphak you",
 		"Malaysia Airlines Flight 370",
@@ -143,7 +146,7 @@ Plane* makeNewPlane()
 }
 Airport* getNewAirport()
 {
-	const char* IATAList[] =
+	const string IATAList[] =
 	{
 		"NOP",
 		"HEL",
@@ -158,7 +161,7 @@ Airport* getNewAirport()
 		"NVM",
 		"GUY"
 	};
-	const char* countryList[] =
+	const string countryList[] =
 	{
 		"Uganda",
 		"Prague but different",

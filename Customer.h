@@ -8,38 +8,34 @@ using namespace std;
 class Customer
 {
 protected:
-	char* ticketNumber; // NOT NECCESSRILY A NUMBER, can be 'y7xu2mm54' for example
-	char* name;
+	string ticketNumber; // NOT NECCESSRILY A NUMBER, can be 'y7xu2mm54' for example
+	string name;
 	Luggage* luggage;
 
 public:
 	// Getters & Setters
-	char* getTicketNumber();
-	bool setTicketNumber(char* ticketNum);
+	string getTicketNumber();
+	bool setTicketNumber(string ticketNum);
 
-	char* getName();
+	string getName();
 	bool setName(char* n);
 
 	Luggage* getLuggage();
 	bool changeLuggage(Luggage& newluggage);
 
 	// Constructors & Destrcutrors
-	Customer(const char* newTicketNumber, const char* custName, Luggage& newLuggage)
+	Customer(const string newTicketNumber, const string custName, Luggage& newLuggage)
 	{
-		this->ticketNumber = new char[strlen(newTicketNumber) + 1];
-		this->name = new char[strlen(custName) + 1];
+		
 
-		strcpy(this->ticketNumber, newTicketNumber);
-		strcpy(this->name, custName);
+		this->ticketNumber = newTicketNumber;
+		this->name = custName;
 		this->luggage = &newLuggage;
 	}
 
 	~Customer()
 	{
 		luggage->~Luggage();
-
-		delete[]ticketNumber;
-		delete[]name;
 	}
 
 	friend ostream& operator<<(ostream& os, const Customer& cust);

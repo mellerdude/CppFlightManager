@@ -19,7 +19,7 @@ public:
 	void setLuggage(Luggage* l);
 
 	// Constructors & Destructors
-	Attendant(const int eid, const char* newName, const int firstAid, Luggage& newLuggage) 
+	Attendant(const int eid, const string newName, const int firstAid, Luggage& newLuggage) 
 		: Crew(eid, newName)
 	{
 		this->firstAidKnowledge = firstAid;
