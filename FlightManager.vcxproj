@@ -145,6 +145,7 @@
     <ClCompile Include="Customer.cpp" />
     <ClCompile Include="Flight.cpp" />
     <ClCompile Include="FlightManager.cpp" />
+    <ClCompile Include="LinkedList.cpp" />
     <ClCompile Include="Luggage.cpp" />
     <ClCompile Include="Pilot.cpp" />
     <ClCompile Include="Plane.cpp" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Crew.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="Flight.h" />
+    <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Luggage.h" />
     <ClInclude Include="Pilot.h" />
     <ClInclude Include="Plane.h" />
