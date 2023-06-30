@@ -1,5 +1,3 @@
-#include <iostream>
-using namespace std; 
 #include "SecurityGuard.h"
 
 char* SecurityGuard::getWeapon()

@@ -1,5 +1,3 @@
-#include <iostream>
-using namespace std;
 #include "Luggage.h"
 
 double Luggage::getVolume()

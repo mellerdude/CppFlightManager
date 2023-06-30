@@ -1,5 +1,3 @@
-#include <iostream>
-using namespace std;
 #include "Seat.h"
 
 bool Seat::operator==(Customer& cust) const

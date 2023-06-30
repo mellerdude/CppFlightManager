@@ -1,5 +1,3 @@
-#include <iostream>
-using namespace std;
 #include "Attendant.h"
 
 int Attendant::getFirstAidKnowledge()

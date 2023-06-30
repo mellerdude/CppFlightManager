@@ -1,4 +1,3 @@
-
 #include "Flight.h"
 
 Plane* Flight::getPlane()

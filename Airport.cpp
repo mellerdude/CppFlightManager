@@ -1,6 +1,3 @@
-#include <iostream>
-using namespace std;
-
 #include "Airport.h"
 char* Airport::getIATA()
 {

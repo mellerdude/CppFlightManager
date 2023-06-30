@@ -1,5 +1,3 @@
-#include <iostream>
-using namespace std;
 #include "Customer.h"
 
 char* Customer::getTicketNumber()
