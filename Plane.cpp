@@ -124,6 +124,23 @@ bool Plane::removeCustomer(const char* name)
 
 ostream& operator<<(ostream& os, const Plane& plane)
 {
-    return os << "Plane model " << plane.getModel() << "\nPlane and customers:\n";
-    plane.showSeats();
+    os << "Plane model " << plane.getModel() << endl;
+    os << "Seats in the plane:" << endl;
+
+    for (int i = 0; i < ROWS_IN_PLANE; i++) {
+        os << endl;
+        os << "Row " << i << ":" << endl;
+
+        for (int j = 0; j < SEATS_PER_ROW; j++) {
+            os << "Seat " << i << "," << j << ": ";
+
+            if (plane.seats[i][j]->isOccupied()) {
+                os << "Occupied by " << plane.seats[i][j]->getCustomer()->getName() << endl;
+            }
+            else {
+                os << "Unoccupied" << endl;
+            }
+        }
+    }
+    return os;
 }

@@ -459,14 +459,15 @@ bool Flight::operator-=(Customer& cust) const
 
 ostream& operator<<(ostream& os, const Flight& flight)
 {
-	os << "Flight from " << *flight.sourceAirport << " to " << *flight.destinationAirport << "\n"
-		<< "On " << *flight.plane << "\n"
+	os << "Flight from " << *flight.sourceAirport << " to " << *flight.destinationAirport << "\nCrew\n"
 		<< "Main " << *flight.mainPilot << "\nCo " << *flight.coPilot << "\n"
 		<< "Attendants\n";
 	for (int i = 0; i < flight.currentNumberOfAttendants; i++) {
 		os << *flight.attendantsList[i] << endl;
 	}
-	os << "Security guards\n" << "Security Guard 1 " << *flight.securityGuard1 << "\nSecurity Guard 2" << *flight.securityGuard2 << endl;
-	return os;
+	os << "Security guards\n" << "Security Guard 1 " << *flight.securityGuard1 << "\nSecurity Guard 2" << *flight.securityGuard2 << endl
+		<< "Plane\nFlying On " << *flight.plane << "\n";
+		return os;
+
 }
 
