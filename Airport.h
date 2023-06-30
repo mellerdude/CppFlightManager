@@ -1,39 +1,28 @@
 #pragma once
 #pragma warning (disable : 4996)
 #include <iostream>
-using namespace std;
-#include <string.h>
+#include <string>
 
 class Airport
 {
 private:
-	char* IATA;
-	char* countryName;
+	std::string IATA;
+	std::string countryName;
 
 public:
 	// Getters & Setters
-	char* getIATA();
-	bool setIATA(char* IATACode);
+	const std::string& getIATA() const;
+	bool setIATA(const std::string& IATACode);
 
-	char* getCountryName();
-	bool setCountryName(char* countryName);
+	const std::string& getCountryName() const;
+	bool setCountryName(const std::string& countryName);
 
 	// Constructors & Destructors
-	Airport(const char* newIATA, const char* county)
-	{
-		this->IATA = new char[strlen(newIATA) + 1];
-		this->countryName = new char[strlen(county) + 1];
+	Airport(const std::string& newIATA, const std::string& county)
+		: IATA(newIATA), countryName(county)
+	{}
 
-		strcpy(this->IATA, newIATA);
-		strcpy(this->countryName, county);
-	};
-	
-	~Airport()
-	{
-		delete[]IATA;
-		delete[]countryName;
-	};
+	~Airport() = default;
 
-	friend ostream& operator<<(ostream& os, const Airport& airport);
-
+	friend std::ostream& operator<<(std::ostream& os, const Airport& airport);
 };

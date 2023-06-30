@@ -11,18 +11,14 @@ bool Crew::setemployeeID(int eID)
 	return true;
 }
 
-char* Crew::getName()
+string Crew::getName()
 {
 	return name;
 }
 
-bool Crew::setName(char* n)
+bool Crew::setName(string n)
 {
-	delete[] name;
-	name = new char[strlen(n) + 1];
-	if (name == nullptr)
-		return false;
-	strcpy(name, n);
+	name = n;
 	return true;
 }
 

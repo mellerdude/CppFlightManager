@@ -14,7 +14,6 @@ class Plane
 {
 private:
 	std::string model;
-	Seat* seats[ROWS_IN_PLANE][SEATS_PER_ROW];
 	LinkedList<Seat*>* linkedSeats[ROWS_IN_PLANE];
 
 public:
@@ -40,7 +39,6 @@ public:
 			linkedSeats[i] = new LinkedList<Seat*>;
 			for (int j = 0; j < SEATS_PER_ROW; j++)
 			{
-				seats[i][j] = new Seat();
                 linkedSeats[i]->insert(new Seat());
 			}
 			

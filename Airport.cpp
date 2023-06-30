@@ -1,35 +1,28 @@
 #include "Airport.h"
-char* Airport::getIATA()
+
+const std::string& Airport::getIATA() const
 {
 	return IATA;
 }
 
-bool Airport::setIATA(char* IATACode)
+bool Airport::setIATA(const std::string& IATACode)
 {
-	delete[] IATA;
-	IATA = new char[strlen(IATACode) + 1];
-	if (IATA == nullptr)
-		return false;
-	strcpy(IATA, IATACode);
+	IATA = IATACode;
 	return true;
 }
 
-char* Airport::getCountryName()
+const std::string& Airport::getCountryName() const
 {
 	return countryName;
 }
 
-bool Airport::setCountryName(char* cName)
+bool Airport::setCountryName(const std::string& cName)
 {
-	delete[] countryName;
-	countryName = new char[strlen(cName) + 1];
-	if (countryName == nullptr)
-		return false;
-	strcpy(countryName, cName);
+	countryName = cName;
 	return true;
 }
 
-ostream& operator<<(ostream& os, const Airport& airport)
+std::ostream& operator<<(std::ostream& os, const Airport& airport)
 {
 	return os << "Country: " << airport.countryName << " IATA: " << airport.IATA;
-};
+}

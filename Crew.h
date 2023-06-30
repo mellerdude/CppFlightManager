@@ -8,8 +8,9 @@ using namespace std;
 class Crew
 {
 protected:
+
 	int employeeID;
-	char* name;
+	std::string name;
 
 	// Constructors & Destructors
 	Crew(const int eid, const char* newName) // constructor in 'protected' to make the class abstract
@@ -17,7 +18,7 @@ protected:
 		this->employeeID = eid;
 
 		this->name = new char[strlen(newName) + 1];
-		strcpy(this->name, newName);
+		this->name = newName;
 	}
 
 public:
@@ -25,13 +26,13 @@ public:
 	int getEmployeeID();
 	bool setemployeeID(int eID);
 
-	char* getName();
-	bool setName(char* n);
+	string getName();
+	bool setName(string n);
 
 	// Constructors & Destructors
 	virtual ~Crew()
 	{
-			delete[] name;
+			
 	}
 
 	friend ostream& operator<<(ostream& os, const Crew& crew);
