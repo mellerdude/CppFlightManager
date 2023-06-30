@@ -1,3 +1,5 @@
+#include <iostream>
+using namespace std;
 #include "Luggage.h"
 
 double Luggage::getVolume()
@@ -24,4 +26,9 @@ bool Luggage::setWeight(double w)
 		return false;
 	weight = w;
 	return true;
+}
+
+ostream& operator<<(ostream& os, const Luggage& luggage)
+{
+	return os << "Luggage weight: " << luggage.weight << " Luggage volume " << luggage.volume;
 }

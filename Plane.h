@@ -1,6 +1,5 @@
 #pragma once
 #pragma warning (disable : 4996)
-
 #include "Customer.h"
 #include "Seat.h"
 
@@ -15,10 +14,12 @@ private:
 
 public:
 	// Getters & Setters
-	char* getModel();
+	char* getModel() const;
 	bool setModel(char* model);
 
 	Seat* getSeatAt(int row, int col);
+
+	void showSeats() const;
 
 	// Constructors & Destructors
 	Plane() : Plane("No Model Name")
@@ -45,13 +46,12 @@ public:
 	}
 
 	// Methods
-	void showSeats();
 	Customer** getCustomers();// get an array of pointers to all customers on the plane by iterating over the seats.
 	bool addCustomer(const Customer* cust); // add to first available place. return false if plane is full
 	bool addCustomer(const Customer* cust, const int row, const int col); // add to a specific seat. return false if occupied.
 	bool removeCustomer(Customer* cust);
 	bool removeCustomer(const char* name);
 
-
+	friend ostream& operator<<(ostream& os, const Plane& plane);
 
 };

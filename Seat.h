@@ -1,6 +1,7 @@
 #pragma once
 #pragma warning (disable : 4996)
-
+#include <ostream>
+using namespace std;
 #include "Customer.h"
 
 class Seat

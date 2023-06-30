@@ -1,3 +1,5 @@
+#include <iostream>
+using namespace std;
 #include "Crew.h"
 
 int Crew::getEmployeeID()
@@ -7,7 +9,7 @@ int Crew::getEmployeeID()
 
 bool Crew::setemployeeID(int eID)
 {
-	if(eID > 100000 || eID < 0)
+	if(eID >= 10000 || eID < 0)
 		return false;
 	return true;
 }
@@ -25,4 +27,11 @@ bool Crew::setName(char* n)
 		return false;
 	strcpy(name, n);
 	return true;
+}
+
+ostream& operator<<(ostream& os, const Crew& crew)
+{
+	if (&crew == nullptr)
+		return os << "No Crew member";
+	return os << "Crew member\n" << "Name: " << crew.name << " ID: " << crew.employeeID;
 }

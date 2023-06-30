@@ -1,3 +1,5 @@
+#include <iostream>
+using namespace std; 
 #include "SecurityGuard.h"
 
 char* SecurityGuard::getWeapon()
@@ -13,4 +15,9 @@ bool SecurityGuard::setWeapon(char* newWeapon)
 		return false;
 	strcpy(weapon, newWeapon);
 	return true;
+}
+
+ostream& operator<<(ostream& os, const SecurityGuard& sec)
+{
+	return os << "Security guard " << (Crew&)sec;
 }

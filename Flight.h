@@ -8,8 +8,6 @@
 #include "Pilot.h"
 #include <time.h>
 #include <ostream>
-#include <ostream>
-
 using namespace std;
 
 class Flight

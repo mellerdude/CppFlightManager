@@ -1,5 +1,7 @@
-#include "Airport.h"
+#include <iostream>
+using namespace std;
 
+#include "Airport.h"
 char* Airport::getIATA()
 {
 	return IATA;
@@ -29,3 +31,8 @@ bool Airport::setCountryName(char* cName)
 	strcpy(countryName, cName);
 	return true;
 }
+
+ostream& operator<<(ostream& os, const Airport& airport)
+{
+	return os << "Country: " << airport.countryName << " IATA: " << airport.IATA;
+};

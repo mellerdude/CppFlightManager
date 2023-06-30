@@ -1,6 +1,7 @@
 #pragma once
 #pragma warning (disable : 4996)
-
+#include <iostream>
+using namespace std;
 #include "Crew.h"
 #include "Luggage.h"
 
@@ -27,4 +28,6 @@ public:
 		this->luggage = &newLuggage;
 	}
 	bool operator==(Attendant& a);
+
+	friend ostream& operator<<(ostream& os, const Attendant& att);
 };

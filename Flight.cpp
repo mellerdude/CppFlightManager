@@ -1,3 +1,4 @@
+
 #include "Flight.h"
 
 Plane* Flight::getPlane()
@@ -133,6 +134,7 @@ bool Flight::removeMainPilot()
 	if(mainPilot == nullptr)
 		return false;
 	delete[] mainPilot;
+	mainPilot = nullptr;
 	return true;
 }
 
@@ -141,6 +143,7 @@ bool Flight::removeCoPilot()
 	if (coPilot == nullptr)
 		return false;
 	delete[] coPilot;
+	coPilot = nullptr;
 	return true;
 }
 
@@ -171,15 +174,7 @@ bool Flight::removePlane()
 
 int Flight::getCurrentNumberOfAttendants()
 {
-	int count = 0;
-
-	// Iterate over the attendants array until a null pointer is encountered
-	while (attendantsList[count] != nullptr)
-	{
-		count++;
-	}
-
-	return count;
+	return currentNumberOfAttendants;
 }
 
 Attendant** Flight::getAllAttendants()
@@ -194,27 +189,21 @@ Attendant* Flight::getAttendantAt(const int position)
 
 bool Flight::removeAttendantAt(const int position)
 {
-	// Determine the size of the attendantsList array
-	int size = 0;
-	while (attendantsList[size] != nullptr)
-	{
-		size++;
-	}
 
 	// Check if the position is valid
-	if (position >= 0 && position < size)
+	if (position >= 0 && position < currentNumberOfAttendants)
 	{
 		// Shift elements to overwrite the element at the given position
-		for (int i = position; i < size - 1; i++)
+		for (int i = position; i < currentNumberOfAttendants - 1; i++)
 		{
 			attendantsList[i] = attendantsList[i + 1];
 		}
 
-		attendantsList[size - 1] = nullptr; // Set the last element to nullptr
+		attendantsList[currentNumberOfAttendants - 1] = nullptr; // Set the last element to nullptr
 
 		// Dynamically reduce the size of the array
-		Attendant** newAttendantsList = new Attendant * [size - 1];
-		for (int i = 0; i < size - 1; i++)
+		Attendant** newAttendantsList = new Attendant * [currentNumberOfAttendants - 1];
+		for (int i = 0; i < currentNumberOfAttendants - 1; i++)
 		{
 			newAttendantsList[i] = attendantsList[i];
 		}
@@ -232,35 +221,26 @@ bool Flight::removeAttendantAt(const int position)
 
 bool Flight::addAttendant(Attendant& a)
 {
-	bool create = false;
-	if (!attendantsList)
-		create = true;
-	// Determine the current size of the attendantsList array
-	int size = 0;
-	if (!create) {
-		while (attendantsList[size] != nullptr)
-		{
-			size++;
-		}
-	}
 
 	// Dynamically allocate a new array with increased size
-	Attendant** newAttendantsList = new Attendant * [size + 1];
+	Attendant** newAttendantsList = new Attendant * [currentNumberOfAttendants + 1];
 
 	// Copy elements from the original array to the new array
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < currentNumberOfAttendants; i++)
 	{
 		newAttendantsList[i] = attendantsList[i];
 	}
 
 	// Add the new attendant at the end of the new array
-	newAttendantsList[size] = &a;
+	newAttendantsList[currentNumberOfAttendants] = &a;
 
 	// Release the memory allocated for the original array
 	delete[] attendantsList;
 
 	// Assign the new array to the attendantsList
 	attendantsList = newAttendantsList;
+
+	currentNumberOfAttendants++;
 
 	return true; // Attendant added successfully
 }
@@ -269,15 +249,13 @@ bool Flight::removeAttendant(Attendant& a)
 {
 	    // Find the position of the attendant in the attendantsList array
     int position = -1;
-    int size = 0;
-    while (attendantsList[size] != nullptr)
+    for (int i=0; i<currentNumberOfAttendants; i++)
     {
-        if (*(attendantsList[size]) == a)
+        if (*(attendantsList[i]) == a)
         {
-            position = size;
+            position = i;
             break;
         }
-        size++;
     }
 
     // Check if the attendant was found
@@ -292,11 +270,10 @@ bool Flight::removeAttendant(Attendant& a)
 bool Flight::removeAllAttendants()
 {
 	int size = 0;
-	while (attendantsList[size] != nullptr)
+	for (int i = 0; i < currentNumberOfAttendants; i++)
 	{
-		delete attendantsList[size];
-		attendantsList[size] = nullptr;
-		size++;
+		delete attendantsList[i];
+		attendantsList[i] = nullptr;
 	}
 
 	delete[] attendantsList;
@@ -325,6 +302,7 @@ bool Flight::removeSecurityGuard1()
 		if (securityGuard1 == nullptr)
 			return false;
 		delete[] securityGuard1;
+		securityGuard1 = nullptr;
 		return true;
 }
 
@@ -350,6 +328,7 @@ bool Flight::removeSecurityGuard2()
 	if (securityGuard2 == nullptr)
 		return false;
 	delete[] securityGuard2;
+	securityGuard2 = nullptr;
 	return true;
 }
 
@@ -481,5 +460,14 @@ bool Flight::operator-=(Customer& cust) const
 
 ostream& operator<<(ostream& os, const Flight& flight)
 {
-	return os << "Attempt" << endl;
+	os << "Flight from " << *flight.sourceAirport << " to " << *flight.destinationAirport << "\n"
+		<< "On " << *flight.plane << "\n"
+		<< "Main " << *flight.mainPilot << "\nCo " << *flight.coPilot << "\n"
+		<< "Attendants\n";
+	for (int i = 0; i < flight.currentNumberOfAttendants; i++) {
+		os << *flight.attendantsList[i] << endl;
+	}
+	os << "Security guards\n" << "Security Guard 1 " << *flight.securityGuard1 << "\nSecurity Guard 2" << *flight.securityGuard2 << endl;
+	return os;
 }
+

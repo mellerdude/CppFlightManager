@@ -1,9 +1,12 @@
+
+#pragma once
+#pragma warning (disable : 4996)
 #include "Plane.h"
-#include <iostream>
-using namespace std;
-char* Plane::getModel()
+
+
+char* Plane::getModel() const
 {
-	return model;
+    return model;
 }
 
 bool Plane::setModel(char* plane_model)
@@ -21,7 +24,7 @@ Seat* Plane::getSeatAt(int row, int col)
 	return seats[row][col];
 }
 
-void Plane::showSeats()
+void Plane::showSeats() const
 {
     cout << "Seats in the plane:" << endl;
 
@@ -118,4 +121,10 @@ bool Plane::removeCustomer(const char* name)
         }
     }
     return false;
+}
+
+ostream& operator<<(ostream& os, const Plane& plane)
+{
+    return os << "Plane model " << plane.getModel() << "\nPlane and customers:\n";
+    plane.showSeats();
 }

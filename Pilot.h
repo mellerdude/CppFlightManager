@@ -1,6 +1,7 @@
 #pragma once
 #pragma warning (disable : 4996)
-
+#include <iostream>
+using namespace std;
 #include "Crew.h"
 
 class Pilot :
@@ -19,4 +20,6 @@ public:
 	{
 		this->licenseNumber = licenseNum;
 	}
+
+	friend ostream& operator<<(ostream& os, const Pilot& p);
 };

@@ -1,3 +1,5 @@
+#include <iostream>
+using namespace std;
 #include "Attendant.h"
 
 int Attendant::getFirstAidKnowledge()
@@ -27,4 +29,9 @@ void Attendant::setLuggage(Luggage* l)
 bool Attendant::operator==(Attendant& a)
 {
 	return getEmployeeID() == a.getEmployeeID() && getName() == a.getName() && getFirstAidKnowledge() == a.getFirstAidKnowledge();
+}
+
+ostream& operator<<(ostream& os, const Attendant& att)
+{
+	return os << "Attendant " << (Crew&)att;
 }

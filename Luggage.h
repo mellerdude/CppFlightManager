@@ -1,6 +1,7 @@
 #pragma once
 #pragma warning (disable : 4996)
-
+#include <iostream>
+using namespace std;
 class Luggage
 {
 private:
@@ -20,4 +21,6 @@ public:
 		this->weight = newWeight;
 		this->volume = newvolume;
 	}
+
+	friend ostream& operator<<(ostream& os, const Luggage& luggage);
 };

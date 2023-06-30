@@ -1,6 +1,7 @@
 #pragma once
 #pragma warning (disable : 4996)
-
+#include <iostream>
+using namespace std;
 #include "Crew.h"
 #include "Customer.h"
 #include <string.h>
@@ -28,4 +29,6 @@ public:
 	{
 		delete[]weapon;
 	}
+
+	friend ostream& operator<<(ostream& os, const SecurityGuard& sec);
 };

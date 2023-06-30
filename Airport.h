@@ -1,6 +1,7 @@
 #pragma once
 #pragma warning (disable : 4996)
-
+#include <iostream>
+using namespace std;
 #include <string.h>
 
 class Airport
@@ -25,11 +26,14 @@ public:
 
 		strcpy(this->IATA, newIATA);
 		strcpy(this->countryName, county);
-	}
-
+	};
+	
 	~Airport()
 	{
 		delete[]IATA;
 		delete[]countryName;
-	}
+	};
+
+	friend ostream& operator<<(ostream& os, const Airport& airport);
+
 };

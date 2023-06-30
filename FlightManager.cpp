@@ -228,7 +228,7 @@ void showAttendantsList(Flight* flight) // main > CREW_MENU > ATTENDANTS_MENU > 
 
 	cout << "All attendants:\n";
 	for (int i = 0; i < numofAttendants; i++)
-		cout << allAttendants[i] << "\n";
+		cout << *allAttendants[i] << "\n";
 }
 void addAttendant(Flight* flight) // main > CREW_MENU > ATTENDANTS_MENU > addAttendant
 {
@@ -662,7 +662,7 @@ void flightDetailsMenu(Flight* flight) // main > DETAILS_MENU
 		switch (choice)
 		{
 		case 1:
-			cout << flight;
+			cout << *flight;
 			break;
 		case 2:
 			getStatusByTime(flight);

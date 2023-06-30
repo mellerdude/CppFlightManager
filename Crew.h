@@ -1,6 +1,7 @@
 #pragma once
 #pragma warning (disable : 4996)
-
+#include <iostream>
+using namespace std;
 #include <stdio.h>
 #include <string.h>
 
@@ -32,4 +33,6 @@ public:
 	{
 			delete[] name;
 	}
+
+	friend ostream& operator<<(ostream& os, const Crew& crew);
 };

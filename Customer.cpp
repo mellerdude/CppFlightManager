@@ -1,3 +1,5 @@
+#include <iostream>
+using namespace std;
 #include "Customer.h"
 
 char* Customer::getTicketNumber()
@@ -43,4 +45,9 @@ bool Customer::changeLuggage(Luggage& newluggage)
 		return true;
 	}
 	return false;
+}
+
+ostream& operator<<(ostream& os, const Customer& cust)
+{
+	return os << "Customer " << cust.name << " ticket number" << cust.ticketNumber << " luggage: " << cust.luggage << endl;
 }

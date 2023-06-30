@@ -1,6 +1,7 @@
 #pragma once
 #pragma warning (disable : 4996)
-
+#include <iostream>
+using namespace std;
 #include <string.h>
 #include "Luggage.h"
 
@@ -40,5 +41,7 @@ public:
 		delete[]ticketNumber;
 		delete[]name;
 	}
+
+	friend ostream& operator<<(ostream& os, const Customer& cust);
 
 };
