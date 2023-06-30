@@ -32,7 +32,7 @@ public:
 	Plane() : Plane("No Model Name")
 	{}
 
-	Plane(const char* modelName)  //TODO : remove Seat* seats
+	Plane(const string modelName)  //TODO : remove Seat* seats
 	{
 		this->model = modelName;
 
