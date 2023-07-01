@@ -150,6 +150,7 @@
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Seat.cpp" />
     <ClCompile Include="SecurityGuard.cpp" />
+    <ClCompile Include="FlightManagerSingleton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Airport.h" />
@@ -157,6 +158,7 @@
     <ClInclude Include="Crew.h" />
     <ClInclude Include="Customer.h" />
     <ClInclude Include="Flight.h" />
+    <ClInclude Include="FlightManagerSingleton.h" />
     <ClInclude Include="LinkedList.h" />
     <ClInclude Include="Luggage.h" />
     <ClInclude Include="Pilot.h" />
