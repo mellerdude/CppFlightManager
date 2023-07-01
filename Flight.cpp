@@ -176,72 +176,84 @@ int Flight::getCurrentNumberOfAttendants()
 	return currentNumberOfAttendants;
 }
 
-Attendant** Flight::getAllAttendants()
+vector<Attendant*> Flight::getAllAttendants()
 {
-	return attendantsList;
+	return tempNewAttendantsList;
 }
 
 Attendant* Flight::getAttendantAt(const int position)
 {
-	return attendantsList[position];
+	return tempNewAttendantsList[position];
 }
 
 bool Flight::removeAttendantAt(const int position)
 {
 
-	// Check if the position is valid
-	if (position >= 0 && position < currentNumberOfAttendants)
-	{
-		// Shift elements to overwrite the element at the given position
-		for (int i = position; i < currentNumberOfAttendants - 1; i++)
-		{
-			attendantsList[i] = attendantsList[i + 1];
-		}
-
-		attendantsList[currentNumberOfAttendants - 1] = nullptr; // Set the last element to nullptr
-
-		// Dynamically reduce the size of the array
-		Attendant** newAttendantsList = new Attendant * [currentNumberOfAttendants - 1];
-		for (int i = 0; i < currentNumberOfAttendants - 1; i++)
-		{
-			newAttendantsList[i] = attendantsList[i];
-		}
-
-		delete[] attendantsList;
-		attendantsList = newAttendantsList;
-
-		return true; // Attendant removed successfully
+	//TODO : Eyal List
+	if (position >= 0 && position < tempNewAttendantsList.size()) {
+		currentNumberOfAttendants--;
+		tempNewAttendantsList.erase(tempNewAttendantsList.begin() + position);
+		return true;  // Removal successful
 	}
+	return false;  // Invalid position or removal failed
+	//TO DO END Eyal fix
+	// 
+	// 
+	// Check if the position is valid
+	//if (position >= 0 && position < currentNumberOfAttendants)
+	//{
+	//	// Shift elements to overwrite the element at the given position
+	//	for (int i = position; i < currentNumberOfAttendants - 1; i++)
+	//	{
+	//		attendantsList[i] = attendantsList[i + 1];
+	//	}
 
-	return false; // Invalid position
+	//	attendantsList[currentNumberOfAttendants - 1] = nullptr; // Set the last element to nullptr
+
+	//	// Dynamically reduce the size of the array
+	//	Attendant** newAttendantsList = new Attendant * [currentNumberOfAttendants - 1];
+	//	for (int i = 0; i < currentNumberOfAttendants - 1; i++)
+	//	{
+	//		newAttendantsList[i] = attendantsList[i];
+	//	}
+
+	//	delete[] attendantsList;
+	//	attendantsList = newAttendantsList;
+
+	//	return true; // Attendant removed successfully
+	//}
+
+	//return false; // Invalid position
 }
 
 
 
 bool Flight::addAttendant(Attendant& a)
 {
-
-	// Dynamically allocate a new array with increased size
-	Attendant** newAttendantsList = new Attendant * [currentNumberOfAttendants + 1];
-
-	// Copy elements from the original array to the new array
-	for (int i = 0; i < currentNumberOfAttendants; i++)
-	{
-		newAttendantsList[i] = attendantsList[i];
-	}
-
-	// Add the new attendant at the end of the new array
-	newAttendantsList[currentNumberOfAttendants] = &a;
-
-	// Release the memory allocated for the original array
-	delete[] attendantsList;
-
-	// Assign the new array to the attendantsList
-	attendantsList = newAttendantsList;
-
+	tempNewAttendantsList.push_back(&a);
 	currentNumberOfAttendants++;
+	return true;
+	//// Dynamically allocate a new array with increased size
+	//Attendant** newAttendantsList = new Attendant * [currentNumberOfAttendants + 1];
 
-	return true; // Attendant added successfully
+	//// Copy elements from the original array to the new array
+	//for (int i = 0; i < currentNumberOfAttendants; i++)
+	//{
+	//	newAttendantsList[i] = attendantsList[i];
+	//}
+
+	//// Add the new attendant at the end of the new array
+	//newAttendantsList[currentNumberOfAttendants] = &a;
+
+	//// Release the memory allocated for the original array
+	//delete[] attendantsList;
+
+	//// Assign the new array to the attendantsList
+	//attendantsList = newAttendantsList;
+
+	//currentNumberOfAttendants++;
+
+	//return true; // Attendant added successfully
 }
 
 bool Flight::removeAttendant(Attendant& a)
@@ -250,7 +262,7 @@ bool Flight::removeAttendant(Attendant& a)
     int position = -1;
     for (int i=0; i<currentNumberOfAttendants; i++)
     {
-        if (*(attendantsList[i]) == a)
+        if (*(tempNewAttendantsList[i]) == a)
         {
             position = i;
             break;
@@ -268,16 +280,19 @@ bool Flight::removeAttendant(Attendant& a)
 
 bool Flight::removeAllAttendants()
 {
-	int size = 0;
-	for (int i = 0; i < currentNumberOfAttendants; i++)
-	{
-		delete attendantsList[i];
-		attendantsList[i] = nullptr;
-	}
-
-	delete[] attendantsList;
-	attendantsList = nullptr;
+	tempNewAttendantsList.clear();
+	currentNumberOfAttendants = 0;
 	return true;
+	//int size = 0;
+	//for (int i = 0; i < currentNumberOfAttendants; i++)
+	//{
+	//	delete attendantsList[i];
+	//	attendantsList[i] = nullptr;
+	//}
+
+	//delete[] attendantsList;
+	//attendantsList = nullptr;
+	//return true;
 }
 
 bool Flight::addSecurityGuard1(SecurityGuard& s1)
@@ -461,7 +476,7 @@ ostream& operator<<(ostream& os, const Flight& flight)
 		<< "Main " << *flight.mainPilot << "\nCo " << *flight.coPilot << "\n"
 		<< "Attendants\n";
 	for (int i = 0; i < flight.currentNumberOfAttendants; i++) {
-		os << *flight.attendantsList[i] << endl;
+		os << *flight.tempNewAttendantsList[i] << endl;
 	}
 	os << "Security guards\n" << "Security Guard 1 " << *flight.securityGuard1 << "\nSecurity Guard 2" << *flight.securityGuard2 << endl
 		<< "Plane\nFlying On " << *flight.plane << "\n";

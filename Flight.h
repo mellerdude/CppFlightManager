@@ -8,6 +8,8 @@
 #include "Pilot.h"
 #include <time.h>
 #include <ostream>
+#include <vector>
+
 using namespace std;
 
 class Flight
@@ -23,8 +25,10 @@ private:
 	// Crew:
 	Pilot* mainPilot = nullptr, * coPilot = nullptr;
 	SecurityGuard* securityGuard1 = nullptr, * securityGuard2 = nullptr;
-	Attendant** attendantsList = nullptr;
+	//Attendant** attendantsList = nullptr;
 	int currentNumberOfAttendants = 0;
+	vector<Attendant*> tempNewAttendantsList;
+
 
 public:
 	// Getters & Setters
@@ -75,7 +79,7 @@ public:
 
 	// Attendant Methods
 	int getCurrentNumberOfAttendants();
-	Attendant** getAllAttendants();
+	vector<Attendant*> getAllAttendants();
 	Attendant* getAttendantAt(const int position);
 	bool removeAttendantAt(const int position);
 	bool addAttendant(Attendant& a);

@@ -226,7 +226,7 @@ void pilotsMenu(Flight* flight) // main > CREW_MENU > PILOT_MENU
 /*Attendant*/
 void showAttendantsList(Flight* flight) // main > CREW_MENU > ATTENDANTS_MENU > showAttendantsList
 {
-	Attendant** allAttendants = flight->getAllAttendants();
+	vector<Attendant*> allAttendants = flight->getAllAttendants();
 	int numofAttendants = flight->getCurrentNumberOfAttendants();
 
 	cout << "All attendants:\n";
