@@ -141,15 +141,25 @@ public:
 class landingProtocol : public State {
 public:
 	void handleTakeOffAndLanding(Flight* context) override {
-		cout << "The plane has completed the route, flight details can be changed.\n";
-		context->setInMidFlyight(false);
+		cout << "The plane has completed the route\n";
+		//TODO : maybey engine 10% (on) 
+		//TODO : maybey flap open
+		//TODO  :maybey TIMER 10 sec
+		//TODO  :maybeyengine (50%)
+		// //TODO  :maybey TIMER 10 sec
+		//TODO  :maybeyengine (100%)
+		// //TODO  :maybey TIMER 10 sec
+		//TODO  :maybeyengine (80%)
+		//TODO : maybey flap close
+		context->setInMidFlyight(true);
 	}
 };
 
 class takeOffProtocol : public State {
 public:
 	void handleTakeOffAndLanding(Flight* context) override {
-		cout << "The plane has taken off, it is not possible to set flight details until it is finished.\n" ;
-		context->setInMidFlyight(true);
+		cout << "The plane has taken off.\n" ;
+		//TODO  : same as but revrse
+		context->setInMidFlyight(false);
 	}
 };
