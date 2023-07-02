@@ -28,6 +28,10 @@ static int employeeID = 0;
 #define CREW_MENU 1
 #define CUSTOMERS_MENU 2
 #define DETAILS_MENU 3
+#define FLIGHT_TAKEOFF 4
+#define FLIGHT_LANDING 5
+#define CLEANLOG 6
+
 
 // inside crew menu:
 #define PILOT_MENU 1
@@ -107,5 +111,9 @@ class FlightManagerSingleton {
 		void timesMenu(Flight* flight);
 		void getStatusByTime(Flight* flight);
 		void flightDetailsMenu(Flight* flight);
+
+		//state : 
+		void flightTakeOffProtocol(Flight* flight);
+		void flightLandingProtocol(Flight* flight);
 };
 

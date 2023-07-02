@@ -645,3 +645,12 @@ void FlightManagerSingleton::flightDetailsMenu(Flight* flight) // main > DETAILS
 		}
 	} while (choice != -1);
 }
+
+void  FlightManagerSingleton::flightTakeOffProtocol(Flight* flight) {
+	flight->setInMidFlyightState(new takeOffProtocol());
+	flight->performStateProtocol();
+};
+void FlightManagerSingleton::flightLandingProtocol(Flight* flight) {
+	flight->setInMidFlyightState(new takeOffProtocol());
+	flight->performStateProtocol();
+};

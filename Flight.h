@@ -11,6 +11,8 @@
 #include <vector>
 
 using namespace std;
+class State;
+
 
 class Flight
 {
@@ -29,8 +31,16 @@ private:
 	int currentNumberOfAttendants = 0;
 	vector<Attendant*> tempNewAttendantsList;
 
+	//state
+	bool inMidFlyight;
+	State* currentState;
+
 
 public:
+
+	bool getInMidFlyight();
+	void setInMidFlyight(bool newValue);
+
 	// Getters & Setters
 	Plane* getPlane();
 	void setPlane(Plane* p);
@@ -62,9 +72,14 @@ public:
 	// Constructors & Destructors
 	Flight(Airport& src, Airport& dest)
 	{
+		currentState = nullptr;
 		this->sourceAirport = &src;
 		this->destinationAirport = &dest;
 	}
+
+	void setInMidFlyightState(State* state); //set if in mid flight or on ground
+
+	void performStateProtocol();
 
 	// Methods
 	// Pilot Methods
@@ -113,4 +128,28 @@ public:
 	bool operator-=(Customer& cust) const;
 
 	friend ostream& operator<<(ostream& os, const Flight& flight);
+};
+
+
+class State {
+
+public:
+	virtual void handleTakeOffAndLanding(Flight* context) = 0;
+};
+
+// Concrete State classes
+class landingProtocol : public State {
+public:
+	void handleTakeOffAndLanding(Flight* context) override {
+		cout << "The plane has completed the route, flight details can be changed.\n";
+		context->setInMidFlyight(false);
+	}
+};
+
+class takeOffProtocol : public State {
+public:
+	void handleTakeOffAndLanding(Flight* context) override {
+		cout << "The plane has taken off, it is not possible to set flight details until it is finished.\n" ;
+		context->setInMidFlyight(true);
+	}
 };

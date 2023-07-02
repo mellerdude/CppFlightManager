@@ -697,14 +697,17 @@ int main()
 	flight.addSecurityGuard2(*Singleton->getANewSecurityGuard());
 	flight.addPlane(*Singleton->makeNewPlane());
 
+	//state
+	flight.setInMidFlyightState(new takeOffProtocol());
+
 	for (int i = 0; i < numOfAttendants; i++)
 		flight.addAttendant(*Singleton->getANewAttendant());
 
 	do
 	{
-		system("cls");
-		cout << "Flight Management:\n\t1 : Crew\n\t2 : Customers\n\t3 : Flight details\n\t-1 : Exit\n";
-		choice = Singleton->getUserIntegerInput(-1, 3);
+		//system("cls");
+		cout << "Flight Management:\n\t1 : Crew\n\t2 : Customers\n\t3 :Flight details\n\t4 :TakeOff\n\t5 :landing\n\t6 :cleanLog\n\t-1 : Exit\n";
+		choice = Singleton->getUserIntegerInput(-1, 6);
 		switch (choice)
 		{
 		case CREW_MENU:
@@ -715,6 +718,15 @@ int main()
 			break;
 		case DETAILS_MENU:
 			Singleton->flightDetailsMenu(&flight);
+			break;
+		case FLIGHT_TAKEOFF:
+			Singleton->flightTakeOffProtocol(&flight);
+			break;
+		case FLIGHT_LANDING :
+			Singleton->flightLandingProtocol(&flight);
+			break;
+		case CLEANLOG : 
+			system("cls");
 			break;
 		default:
 			break;

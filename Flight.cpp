@@ -1,5 +1,23 @@
 #include "Flight.h"
 
+
+
+bool Flight::getInMidFlyight() {
+	return inMidFlyight;
+};
+void Flight::setInMidFlyight(bool newValue) {
+	inMidFlyight = newValue;
+};
+
+void Flight::performStateProtocol() {
+	currentState->handleTakeOffAndLanding(this);
+}
+
+void Flight::setInMidFlyightState(State* state) {
+	currentState = state;
+}
+
+
 Plane* Flight::getPlane()
 {
 	return plane;
