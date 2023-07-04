@@ -260,6 +260,7 @@ bool Flight::removeAttendant(Attendant& a)
     // Check if the attendant was found
     if (position != -1)
     {
+		currentNumberOfAttendants = currentNumberOfAttendants - 1;
         return removeAttendantAt(position);
     }
 

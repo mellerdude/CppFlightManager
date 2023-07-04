@@ -17,5 +17,5 @@ bool SecurityGuard::setWeapon(char* newWeapon)
 
 ostream& operator<<(ostream& os, const SecurityGuard& sec)
 {
-	return os << "Security guard " << (Crew&)sec;
+	return os << "Security guard " << (Crew&)sec << "Weapon = " << sec.weapon << endl ;
 }

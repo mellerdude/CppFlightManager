@@ -31,5 +31,5 @@ bool Attendant::operator==(Attendant& a)
 
 ostream& operator<<(ostream& os, const Attendant& att)
 {
-	return os << "Attendant " << (Crew&)att;
+	return os << "Attendant " << (Crew&)att << "First aid knowledge = " << att.firstAidKnowledge << endl;
 }

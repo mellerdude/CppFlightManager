@@ -184,15 +184,19 @@ Flight* getANewFlight()
 void addPilot(Flight* flight, int designation) // main > CREW_MENU > PILOT_MENU > addPilot
 {
 	char name[100];
-
+	bool success;
 	cleanBuffer();
 	cout << "Enter the pilot's name: ";
 	cin >> name;
 	cleanBuffer();
 	if (designation == 1)
-		flight->addMainPilot(*(new Pilot(employeeID++, name, licenseID++)));
+		success = flight->addMainPilot(*(new Pilot(employeeID++, name, licenseID++)));
 	else
-		flight->addCoPilot(*(new Pilot(employeeID++, name, licenseID++)));
+		success = flight->addCoPilot(*(new Pilot(employeeID++, name, licenseID++)));
+	if (success)
+		cout << "Pilot was successfully added" << endl;
+	else
+		cout << "Pilot was not successfully added" << endl;
 }
 void pilotsMenu(Flight* flight) // main > CREW_MENU > PILOT_MENU
 {
@@ -225,10 +229,13 @@ void showAttendantsList(Flight* flight) // main > CREW_MENU > ATTENDANTS_MENU > 
 {
 	Attendant** allAttendants = flight->getAllAttendants();
 	int numofAttendants = flight->getCurrentNumberOfAttendants();
-
-	cout << "All attendants:\n";
-	for (int i = 0; i < numofAttendants; i++)
-		cout << *allAttendants[i] << "\n";
+	if (numofAttendants != 0) {
+		cout << "All attendants:\n";
+		for (int i = 0; i < numofAttendants; i++)
+			cout << *allAttendants[i] << "\n";
+	}
+	else
+		cout << "No attendants available" << endl;
 }
 void addAttendant(Flight* flight) // main > CREW_MENU > ATTENDANTS_MENU > addAttendant
 {
@@ -245,8 +252,11 @@ void addAttendant(Flight* flight) // main > CREW_MENU > ATTENDANTS_MENU > addAtt
 
 	cout << "Enter Luggage weight and volume (e.g.: 60.3 5.4): ";
 	cin >> luggageWeight, luggageVolume;
-
-	flight->addAttendant(*(new Attendant(employeeID++, name, firstAidKnowledge, *(new Luggage(luggageWeight, luggageVolume)))));
+	cleanBuffer();
+	if (flight->addAttendant(*(new Attendant(employeeID++, name, firstAidKnowledge, *(new Luggage(luggageWeight, luggageVolume))))))
+		cout << "Attendant was successfully added" << endl;
+	else
+		cout << "Attendant was not successfully added" << endl;
 }
 void removeAttendant(Flight* flight)// main > CREW_MENU > ATTENDANTS_MENU > removeAttendant
 {
@@ -254,9 +264,12 @@ void removeAttendant(Flight* flight)// main > CREW_MENU > ATTENDANTS_MENU > remo
 	if (numOfAttendants != 0) {
 		cout << "Enter the attendant's offset (1-" << numOfAttendants << "): ";
 		while (attendantOffset < 1)
-			attendantOffset = getUserIntegerInput(0, numOfAttendants);
+			attendantOffset = getUserIntegerInput(1, numOfAttendants);
 
-		flight->removeAttendantAt(attendantOffset);
+		if (flight->removeAttendantAt(attendantOffset-1))
+			cout << "Attendant was successfully removed" << endl;
+		else
+			cout << "Attendant was not successfully removed" << endl;
 	}
 	else {
 		cout << "No Attendants" << endl;
@@ -293,7 +306,7 @@ void addSecurityGuard(Flight* flight, int designation) // main > CREW_MENU > SEC
 {
 	char name[100], weapon[100];
 	double luggageWeight = 0, luggageVolume = 0;
-
+	bool success;
 	cleanBuffer();
 	cout << "Enter the guard's name: ";
 	cin >> name;
@@ -306,9 +319,13 @@ void addSecurityGuard(Flight* flight, int designation) // main > CREW_MENU > SEC
 	cin >> weapon;
 
 	if (designation == 1)
-		flight->addSecurityGuard1(*(new SecurityGuard("SpecialTicket", name, *(new Luggage(luggageWeight, luggageVolume)), employeeID++, weapon)));
+		success = flight->addSecurityGuard1(*(new SecurityGuard("SpecialTicket", name, *(new Luggage(luggageWeight, luggageVolume)), employeeID++, weapon)));
 	else
-		flight->addSecurityGuard2(*(new SecurityGuard("SpecialTicket", name, *(new Luggage(luggageWeight, luggageVolume)), employeeID++, weapon)));
+		success = flight->addSecurityGuard2(*(new SecurityGuard("SpecialTicket", name, *(new Luggage(luggageWeight, luggageVolume)), employeeID++, weapon)));
+	if (success)
+		cout << "Security guard was successfully added" << endl;
+	else
+		cout << "Security guard was not successfully added" << endl;
 }
 void guardsMenu(Flight* flight) // main > CREW_MENU > SECURITY_GUARDS_MENU
 {
@@ -377,8 +394,11 @@ void addCustomerNoSit(Flight* flight) // main > CUSTOMERS_MENU > ADD_CUSTOMERS_M
 
 	cout << "Enter Luggage weight and volume (e.g.: 60.3 5.4): ";
 	cin >> luggageWeight, luggageVolume;
-
-	*flight += *(new Customer(ticketNum, name, *(new Luggage(luggageWeight, luggageVolume))));
+	cleanBuffer();
+	if(*flight += *(new Customer(ticketNum, name, *(new Luggage(luggageWeight, luggageVolume)))))
+		cout << "Customer was added successfully to flight" << endl;
+	else
+		cout << "Customer was not added successfully to flight" << endl;
 }
 void addCustomerWithSit(Flight* flight) // main > CUSTOMERS_MENU > ADD_CUSTOMERS_MENU > add customer with seat
 {
@@ -396,14 +416,17 @@ void addCustomerWithSit(Flight* flight) // main > CUSTOMERS_MENU > ADD_CUSTOMERS
 
 	cout << "Enter Luggage weight and volume (e.g.: 60.3 5.4): ";
 	cin >> luggageWeight >> luggageVolume;
-
+	cleanBuffer();
 	cout << "Enter a seat number:\n";
 	cout << "Row: ";
 	seatRow = getUserIntegerInput(1, ROWS_IN_PLANE);
 	cout << "Column: ";
 	seatColumn = getUserIntegerInput(1, SEATS_PER_ROW);
 
-	flight->addCustomer(*(new Customer(ticketNum, name, *(new Luggage(luggageWeight, luggageVolume)))), seatRow, seatColumn);
+	if(flight->addCustomer(*(new Customer(ticketNum, name, *(new Luggage(luggageWeight, luggageVolume)))), seatRow, seatColumn))
+		cout << "Customer was added successfully to flight" << endl;
+	else
+		cout << "Customer was not added successfully to flight" << endl;
 }
 void addCustomerMenu(Flight* flight) // main > CUSTOMERS_MENU > ADD_CUSTOMERS_MENU
 {
@@ -433,7 +456,10 @@ void removeCustomerByName(Flight* flight) // main > CUSTOMERS_MENU > REMOVE_CUST
 	cout << "Enter the customer's name: ";
 	cin >> name;
 	cleanBuffer();
-	flight->removeCustomerByName(name);
+	if(flight->removeCustomerByName(name))
+		cout << "Customer was removed successfully from flight" << endl;
+	else
+		cout << "Customer was not removed successfully from flight" << endl;;
 }
 void removeCustomerBySeat(Flight* flight) // main > CUSTOMERS_MENU > REMOVE_CUSTOMERS_MENU > REMOVE_CUSTOMER_BY_SEAT
 {
@@ -445,7 +471,10 @@ void removeCustomerBySeat(Flight* flight) // main > CUSTOMERS_MENU > REMOVE_CUST
 	cout << "Column: ";
 	seatColumn = getUserIntegerInput(1, SEATS_PER_ROW);
 	cleanBuffer();
-	flight->removeCustomerBySeat(seatRow, seatColumn);
+	if(flight->removeCustomerBySeat(seatRow, seatColumn))
+		cout << "Customer was removed successfully from flight" << endl;
+	else
+		cout << "Customer was not removed successfully from flight" << endl;
 }
 void removeCustomerMenu(Flight* flight) // main > CUSTOMERS_MENU > REMOVE_CUSTOMERS_MENU
 {
@@ -482,7 +511,10 @@ void resitCustomerByName(Flight* flight) // main > CUSTOMERS_MENU > RESIT_CUSTOM
 	cout << "Column: ";
 	newSeatColumn = getUserIntegerInput(1, SEATS_PER_ROW);
 	cleanBuffer();
-	flight->resitCustomerByName(name, newSeatRow, newSeatColumn);
+	if (flight->resitCustomerByName(name, newSeatRow, newSeatColumn))
+		cout << "Customer was reseated" << endl;
+	else
+		cout << "Customer was not successfully reseated" << endl;
 }
 void resitCustomerBySeat(Flight* flight) // main > CUSTOMERS_MENU > RESIT_CUSTOMERS_MENU > RESIT_CUSTOMER_BY_SEAT
 {
@@ -500,7 +532,10 @@ void resitCustomerBySeat(Flight* flight) // main > CUSTOMERS_MENU > RESIT_CUSTOM
 	cout << "Column: ";
 	newSeatColumn = getUserIntegerInput(1, SEATS_PER_ROW);
 
-	flight->resitCustomerBySeat(oldSeatRow, oldSeatColumn, newSeatRow, newSeatColumn);
+	if(flight->resitCustomerBySeat(oldSeatRow, oldSeatColumn, newSeatRow, newSeatColumn))
+		cout << "Customer was reseated" << endl;
+	else
+		cout << "Customer was not successfully reseated" << endl;
 }
 void resitCustomerMenu(Flight* flight) // main > CUSTOMERS_MENU > RESIT_CUSTOMERS_MENU
 {
@@ -534,7 +569,10 @@ void changeCustomerLuggage(Flight* flight) // main > CUSTOMERS_MENU > CHANGE_CUS
 	cout << "Enter Luggage weight and volume (e.g.: 60.3 5.4): ";
 	cin >> luggageWeight, luggageVolume;
 	cleanBuffer();
-	flight->changeCustomerLuggageByName(name, new Luggage(luggageWeight, luggageVolume));
+	if(flight->changeCustomerLuggageByName(name, new Luggage(luggageWeight, luggageVolume)))
+		cout << "Customer luggage was successfully changed" << endl;
+	else
+		cout << "Customer luggage was not successfully changed" << endl;
 }
 void customerMenu(Flight* flight) // main > CUSTOMERS_MENU
 {

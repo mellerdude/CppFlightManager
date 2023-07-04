@@ -30,5 +30,5 @@ ostream& operator<<(ostream& os, const Crew& crew)
 {
 	if (&crew == nullptr)
 		return os << "No Crew member";
-	return os << "Crew member\n" << "Name: " << crew.getName() << " ID: " << crew.getEmployeeID();
+	return os << "Crew member\n" << "Name: " << crew.getName() << " ID: " << crew.getEmployeeID() << endl;
 }
