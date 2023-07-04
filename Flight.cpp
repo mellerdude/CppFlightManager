@@ -209,7 +209,7 @@ bool Flight::removeAttendantAt(const int position)
 
 		delete[] attendantsList;
 		attendantsList = newAttendantsList;
-
+		currentNumberOfAttendants = currentNumberOfAttendants - 1;
 		return true; // Attendant removed successfully
 	}
 
@@ -277,6 +277,7 @@ bool Flight::removeAllAttendants()
 
 	delete[] attendantsList;
 	attendantsList = nullptr;
+	currentNumberOfAttendants = 0;
 	return true;
 }
 

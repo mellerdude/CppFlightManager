@@ -188,7 +188,7 @@ void addPilot(Flight* flight, int designation) // main > CREW_MENU > PILOT_MENU 
 	cleanBuffer();
 	cout << "Enter the pilot's name: ";
 	cin >> name;
-
+	cleanBuffer();
 	if (designation == 1)
 		flight->addMainPilot(*(new Pilot(employeeID++, name, licenseID++)));
 	else
@@ -239,7 +239,7 @@ void addAttendant(Flight* flight) // main > CREW_MENU > ATTENDANTS_MENU > addAtt
 	cleanBuffer();
 	cout << "Enter the attendant's name: ";
 	cin >> name;
-
+	cleanBuffer();
 	cout << "Enter the attendant's first aid knowledge (1-10): ";
 	cin >> firstAidKnowledge;
 
@@ -251,12 +251,16 @@ void addAttendant(Flight* flight) // main > CREW_MENU > ATTENDANTS_MENU > addAtt
 void removeAttendant(Flight* flight)// main > CREW_MENU > ATTENDANTS_MENU > removeAttendant
 {
 	int attendantOffset = 0, numOfAttendants = flight->getCurrentNumberOfAttendants();
+	if (numOfAttendants != 0) {
+		cout << "Enter the attendant's offset (1-" << numOfAttendants << "): ";
+		while (attendantOffset < 1)
+			attendantOffset = getUserIntegerInput(0, numOfAttendants);
 
-	cout << "Enter the attendant's offset (1-" << numOfAttendants << "): ";
-	while (attendantOffset < 1)
-		attendantOffset = getUserIntegerInput(0, numOfAttendants);
-
-	flight->removeAttendantAt(attendantOffset);
+		flight->removeAttendantAt(attendantOffset);
+	}
+	else {
+		cout << "No Attendants" << endl;
+	}
 }
 void attendantMenu(Flight* flight) // main > CREW_MENU > ATTENDANTS_MENU
 {
@@ -293,7 +297,7 @@ void addSecurityGuard(Flight* flight, int designation) // main > CREW_MENU > SEC
 	cleanBuffer();
 	cout << "Enter the guard's name: ";
 	cin >> name;
-
+	cleanBuffer();
 	cout << "Enter Luggage weight and volume (e.g.: 60.3 5.4): ";
 	cin >> luggageWeight, luggageVolume;
 
@@ -428,7 +432,7 @@ void removeCustomerByName(Flight* flight) // main > CUSTOMERS_MENU > REMOVE_CUST
 	cleanBuffer();
 	cout << "Enter the customer's name: ";
 	cin >> name;
-
+	cleanBuffer();
 	flight->removeCustomerByName(name);
 }
 void removeCustomerBySeat(Flight* flight) // main > CUSTOMERS_MENU > REMOVE_CUSTOMERS_MENU > REMOVE_CUSTOMER_BY_SEAT
@@ -440,7 +444,7 @@ void removeCustomerBySeat(Flight* flight) // main > CUSTOMERS_MENU > REMOVE_CUST
 	seatRow = getUserIntegerInput(1, ROWS_IN_PLANE);
 	cout << "Column: ";
 	seatColumn = getUserIntegerInput(1, SEATS_PER_ROW);
-
+	cleanBuffer();
 	flight->removeCustomerBySeat(seatRow, seatColumn);
 }
 void removeCustomerMenu(Flight* flight) // main > CUSTOMERS_MENU > REMOVE_CUSTOMERS_MENU
@@ -471,6 +475,7 @@ void resitCustomerByName(Flight* flight) // main > CUSTOMERS_MENU > RESIT_CUSTOM
 	cleanBuffer();
 	cout << "Enter a customer's name: ";
 	cin >> name;
+	cleanBuffer();
 	cout << "Enter a new seat number:\n";
 	cout << "Row: ";
 	newSeatRow = getUserIntegerInput(1, ROWS_IN_PLANE);
@@ -525,9 +530,10 @@ void changeCustomerLuggage(Flight* flight) // main > CUSTOMERS_MENU > CHANGE_CUS
 	cleanBuffer();
 	cout << "Enter a customer's name: ";
 	cin >> name;
+	cleanBuffer();
 	cout << "Enter Luggage weight and volume (e.g.: 60.3 5.4): ";
 	cin >> luggageWeight, luggageVolume;
-
+	cleanBuffer();
 	flight->changeCustomerLuggageByName(name, new Luggage(luggageWeight, luggageVolume));
 }
 void customerMenu(Flight* flight) // main > CUSTOMERS_MENU
@@ -568,7 +574,7 @@ void setSourceAirport(Flight* flight) // main > DETAILS_MENU >> AIRPORT > set so
 	cleanBuffer();
 	cout << "Enter the airport's country name: ";
 	cin >> countryName;
-
+	cleanBuffer();
 	flight->setSourceAirport(new Airport(IATA, countryName));
 }
 void setDestinationAirport(Flight* flight) // main > DETAILS_MENU >> AIRPORT > set Destination
@@ -581,7 +587,7 @@ void setDestinationAirport(Flight* flight) // main > DETAILS_MENU >> AIRPORT > s
 	cleanBuffer();
 	cout << "Enter the airport's country name: ";
 	cin >> countryName;
-
+	cleanBuffer();
 	flight->setDestinationAirport(new Airport(IATA, countryName));
 }
 void airportsMenu(Flight* flight) // main > DETAILS_MENU >> AIRPORT
