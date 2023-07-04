@@ -1,5 +1,5 @@
 #include "Crew.h"
-int Crew::getEmployeeID()
+int Crew::getEmployeeID() const
 {
 	return employeeID;
 }
@@ -11,7 +11,7 @@ bool Crew::setemployeeID(int eID)
 	return true;
 }
 
-string Crew::getName()
+const string Crew::getName() const
 {
 	return name;
 }
@@ -26,5 +26,6 @@ ostream& operator<<(ostream& os, const Crew& crew)
 {
 	if (&crew == nullptr)
 		return os << "No Crew member";
-	return os << "Crew member\n" << "Name: " << crew.name << " ID: " << crew.employeeID;
+	return os << "Crew member\n" << "Name: " << crew.getName() << " ID: " << crew.getEmployeeID() << endl;
 }
+

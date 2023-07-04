@@ -3,14 +3,14 @@
 #include <iostream>
 using namespace std;
 #include <stdio.h>
-#include <string.h>
+#include <string>
 
 class Crew
 {
 protected:
 
 	int employeeID;
-	std::string name;
+	string name;
 
 	// Constructors & Destructors
 	Crew(const int eid, const string newName) // constructor in 'protected' to make the class abstract
@@ -22,11 +22,11 @@ protected:
 
 public:
 	// Getters & Setters
-	int getEmployeeID();
+	int getEmployeeID() const;
 	bool setemployeeID(int eID);
 
-	string getName();
-	bool setName(string n);
+	const string getName() const;
+	bool setName(const string n);
 
 	// Constructors & Destructors
 	virtual ~Crew()

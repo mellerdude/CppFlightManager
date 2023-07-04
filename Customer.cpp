@@ -1,6 +1,6 @@
 #include "Customer.h"
 
-string Customer::getTicketNumber()
+const string Customer::getTicketNumber() const
 {
 	return ticketNumber;
 }
@@ -11,7 +11,7 @@ bool Customer::setTicketNumber(string ticketNum)
 	return true;
 }
 
-string Customer::getName()
+const string Customer::getName() const
 {
 	return name;
 }
@@ -22,7 +22,7 @@ bool Customer::setName(char* n)
 	return true;
 }
 
-Luggage* Customer::getLuggage()
+const Luggage* Customer::getLuggage() const
 {
 	return luggage;
 }

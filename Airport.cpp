@@ -1,22 +1,22 @@
 #include "Airport.h"
 
-const std::string& Airport::getIATA() const
+const string& Airport::getIATA() const
 {
 	return IATA;
 }
 
-bool Airport::setIATA(const std::string& IATACode)
+bool Airport::setIATA(const string& IATACode)
 {
 	IATA = IATACode;
 	return true;
 }
 
-const std::string& Airport::getCountryName() const
+const string& Airport::getCountryName() const
 {
 	return countryName;
 }
 
-bool Airport::setCountryName(const std::string& cName)
+bool Airport::setCountryName(const string& cName)
 {
 	countryName = cName;
 	return true;

@@ -1,6 +1,6 @@
 #include "SecurityGuard.h"
 
-string SecurityGuard::getWeapon()
+const string SecurityGuard::getWeapon() const
 {
 	return weapon;
 }
@@ -13,5 +13,5 @@ bool SecurityGuard::setWeapon(string newWeapon)
 
 ostream& operator<<(ostream& os, const SecurityGuard& sec)
 {
-	return os << "Security guard " << (Crew&)sec;
+	return os << "Security guard " << (Crew&)sec << "Weapon = " << sec.weapon << endl;
 }

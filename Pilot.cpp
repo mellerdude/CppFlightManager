@@ -1,6 +1,6 @@
 #include "Pilot.h"
 
-int Pilot::GetLicenseNumber()
+int Pilot::GetLicenseNumber() const
 {
 	return licenseNumber;
 }
@@ -15,5 +15,5 @@ bool Pilot::setLicenseNumber(int number)
 
 ostream& operator<<(ostream& os, const Pilot& p)
 {
-	return os << "Pilot " << (Crew&)p;
+	return os << "Pilot " << (Crew&)p << "Licence num = " << p.licenseNumber << endl;
 }

@@ -18,7 +18,7 @@ void Flight::setInMidFlyightState(State* state) {
 }
 
 
-Plane* Flight::getPlane()
+const Plane* Flight::getPlane() const
 {
 	return plane;
 }
@@ -30,7 +30,7 @@ void Flight::setPlane(Plane* p)
 	
 }
 
-Airport* Flight::getSourceAirport()
+const Airport* Flight::getSourceAirport() const
 {
 	return sourceAirport;
 }
@@ -40,7 +40,7 @@ void Flight::setSourceAirport(Airport* s)
 	sourceAirport = s;
 }
 
-Airport* Flight::getDestinationAirport()
+const Airport* Flight::getDestinationAirport() const
 {
 	return destinationAirport;
 }
@@ -50,7 +50,7 @@ void Flight::setDestinationAirport(Airport* d)
 	destinationAirport = d;
 }
 
-tm* Flight::getTakeoffTime()
+const tm* Flight::getTakeoffTime() const
 {
 	return &takeoffTime;
 }
@@ -60,7 +60,7 @@ void Flight::setTakeoffTime(tm t)
 	takeoffTime = t;
 }
 
-tm* Flight::getLandingTime()
+const tm* Flight::getLandingTime() const
 {
 	return &landingTime;
 }
@@ -70,7 +70,7 @@ void Flight::setLandingTime(tm l)
 	landingTime = l;
 }
 
-Pilot* Flight::getMainPilot()
+const Pilot* Flight::getMainPilot() const
 {
 	return mainPilot;
 }
@@ -80,7 +80,7 @@ void Flight::setMainPilot(Pilot* p)
 		mainPilot = p;
 }
 
-Pilot* Flight::getCoPilot()
+const Pilot* Flight::getCoPilot() const
 {
 	return coPilot;
 }
@@ -90,7 +90,7 @@ void Flight::setCoPilot(Pilot* p)
 		coPilot = p;
 }
 
-SecurityGuard* Flight::getSecurityGuard1()
+const SecurityGuard* Flight::getSecurityGuard1() const
 {
 	return securityGuard1;
 }
@@ -100,7 +100,7 @@ void Flight::setSecurityGuard1(SecurityGuard* s1)
 		securityGuard1 = s1;
 }
 
-SecurityGuard* Flight::getSecurityGuard2()
+const SecurityGuard* Flight::getSecurityGuard2() const
 {
 	return securityGuard2;
 }
@@ -199,7 +199,7 @@ vector<Attendant*> Flight::getAllAttendants()
 	return tempNewAttendantsList;
 }
 
-Attendant* Flight::getAttendantAt(const int position)
+const Attendant* Flight::getAttendantAt(const int position) const
 {
 	return tempNewAttendantsList[position];
 }
@@ -376,7 +376,7 @@ bool Flight::removeCustomerByName(string name)
 
 bool Flight::removeCustomerBySeat(int seatRow, int seatCol)
 {
-	return plane->getSeatAt(seatRow,seatCol)->sitCustomerC(nullptr);
+	return plane->getSeatAt(seatRow,seatCol)->sitCustomer(nullptr);
 }
 
 bool Flight::resitCustomerByName(string name, int seatRow, int seatCol)
@@ -392,7 +392,7 @@ bool Flight::resitCustomerBySeat(int oldSeatRow, int oldSeatColumn, int newSeatR
 {
 	Customer* c= plane->getSeatAt(oldSeatRow,oldSeatColumn)->getCustomer();
 	if (plane->removeCustomer(c->getName()))
-		return plane->getSeatAt(newSeatRow, newSeatColumn)->sitCustomerC(c);
+		return plane->getSeatAt(newSeatRow, newSeatColumn)->sitCustomer(c);
 	else
 		return false;
 }
@@ -400,7 +400,7 @@ bool Flight::resitCustomerBySeat(int oldSeatRow, int oldSeatColumn, int newSeatR
 bool Flight::changeCustomerLuggageByName(string name, Luggage* newLuggage)
 {
 	int size = 0;
-	Customer** c = plane->getCustomers();
+	Customer** c = plane->getCustomersMutable();
 	while (c[size] != nullptr)
 	{
 		size++;
@@ -413,12 +413,12 @@ bool Flight::changeCustomerLuggageByName(string name, Luggage* newLuggage)
 	return false;
 }
 
-void Flight::showFlight()
+void Flight::showFlight() const
 {
 	plane->showSeats();
 }
 
-string Flight::getStatusAt(tm& time)
+const string Flight::getStatusAt(tm& time) const
 {
 	 string status = "";
 

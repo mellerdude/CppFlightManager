@@ -2,7 +2,7 @@
 #pragma warning (disable : 4996)
 #include <iostream>
 using namespace std;
-#include <string.h>
+#include <string>
 #include "Luggage.h"
 
 class Customer
@@ -14,13 +14,13 @@ protected:
 
 public:
 	// Getters & Setters
-	string getTicketNumber();
+	const string getTicketNumber() const;
 	bool setTicketNumber(string ticketNum);
 
-	string getName();
+	const string getName() const;
 	bool setName(char* n);
 
-	Luggage* getLuggage();
+	const Luggage* getLuggage() const;
 	bool changeLuggage(Luggage& newluggage);
 
 	// Constructors & Destrcutrors

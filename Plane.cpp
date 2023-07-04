@@ -3,23 +3,19 @@
 #include "Plane.h"
 
 
-std::string Plane::getModel() const
+const string Plane::getModel() const
 {
     return model;
 }
 
-bool Plane::setModel(const std::string& plane_model)
+bool Plane::setModel(const string& plane_model)
 {
     model = plane_model;
     return true;
 }
 
-Seat* Plane::getSeatAt(int row, int col)
-{
-    return linkedSeats[row]->getItemByPos(col);
-}
 
-Seat* Plane::getSeatAt(int row, int col) const //for cosnt use
+Seat* Plane::getSeatAt(int row, int col) const//for cosnt use
 {
     return linkedSeats[row]->getItemByPos(col);
 }
@@ -47,7 +43,7 @@ void Plane::showSeats() const
 }
 
 
-Customer** Plane::getCustomers()
+const Customer** Plane::getCustomers() const
 {
     // Count the number of occupied seats
     int occupiedCount = 0;
@@ -58,9 +54,11 @@ Customer** Plane::getCustomers()
             }
         }
     }
+    if (occupiedCount == 0)
+        return nullptr;
 
     // Allocate memory for the customer array
-    Customer** customers = new Customer * [occupiedCount];
+    const Customer** customers = new const Customer * [occupiedCount];
 
     // Populate the customer array with occupied customer pointers
     int index = 0;
@@ -76,7 +74,37 @@ Customer** Plane::getCustomers()
     return customers;
 }
 
-bool Plane::addCustomer(const Customer* cust)
+Customer** Plane::getCustomersMutable() const
+{
+    // Count the number of occupied seats
+    int occupiedCount = 0;
+    for (int i = 0; i < ROWS_IN_PLANE; i++) {
+        for (int j = 0; j < SEATS_PER_ROW; j++) {
+            if (getSeatAt(i, j)->isOccupied()) {
+                occupiedCount++;
+            }
+        }
+    }
+    if (occupiedCount == 0)
+        return nullptr;
+    // Allocate memory for the customer array
+    Customer** customers = new Customer * [occupiedCount];
+
+    // Populate the customer array with occupied customer pointers
+    int index = 0;
+    for (int i = 0; i < ROWS_IN_PLANE; i++) {
+        for (int j = 0; j < SEATS_PER_ROW; j++) {
+            if (getSeatAt(i, j)->isOccupied()) {
+                customers[index] = getSeatAt(i, j)->getMutableCustomer();
+                index++;
+            }
+        }
+    }
+
+    return customers;
+}
+
+bool Plane::addCustomer(Customer* cust)
 {
     for (int i = 0; i < ROWS_IN_PLANE; i++) {
         for (int j = 0; j < SEATS_PER_ROW; j++) {
@@ -89,7 +117,7 @@ bool Plane::addCustomer(const Customer* cust)
     return false;
 }
 
-bool Plane::addCustomer(const Customer* cust, const int row, const int col)
+bool Plane::addCustomer(Customer* cust, const int row, const int col)
 {
     if (getSeatAt(row, col)->isOccupied())
         return false;
@@ -102,7 +130,7 @@ bool Plane::removeCustomer(Customer* cust)
     for (int i = 0; i < ROWS_IN_PLANE; i++) {
         for (int j = 0; j < SEATS_PER_ROW; j++) {
             if ((getSeatAt(i, j)->isOccupied()) && (*getSeatAt(i, j) == *cust)) {
-                getSeatAt(i, j)->sitCustomerC(nullptr);
+                getSeatAt(i, j)->sitCustomer(nullptr);
                 return true;
             }
         }
@@ -115,7 +143,7 @@ bool Plane::removeCustomer(const std::string name)
     for (int i = 0; i < ROWS_IN_PLANE; i++) {
         for (int j = 0; j < SEATS_PER_ROW; j++) {
             if (getSeatAt(i, j)->isOccupied() && getSeatAt(i, j)->getCustomer()->getName() == name) {
-                getSeatAt(i, j)->sitCustomerC(nullptr);
+                getSeatAt(i, j)->sitCustomer(nullptr);
                 return true;
             }
         }

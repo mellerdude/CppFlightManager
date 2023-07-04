@@ -1,6 +1,7 @@
 #pragma once
 #pragma warning (disable : 4996)
 #include <iostream>
+using namespace std;
 #include <string>
 
 class Airport
@@ -11,14 +12,14 @@ private:
 
 public:
 	// Getters & Setters
-	const std::string& getIATA() const;
-	bool setIATA(const std::string& IATACode);
+	const string& getIATA() const;
+	bool setIATA(const string& IATACode);
 
-	const std::string& getCountryName() const;
-	bool setCountryName(const std::string& countryName);
+	const string& getCountryName() const;
+	bool setCountryName(const string& countryName);
 
 	// Constructors & Destructors
-	Airport(const std::string& newIATA, const std::string& county)
+	Airport(const string& newIATA, const string& county)
 		: IATA(newIATA), countryName(county)
 	{}
 

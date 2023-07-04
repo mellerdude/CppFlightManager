@@ -10,14 +10,18 @@ private:
 
 public:
 	// Getters & Setters
-	bool isOccupied()
+	bool isOccupied() const
 	{
 		return this->occupied;
 	}
 
-	Customer* getCustomer()
+	Customer* getCustomer() const
 	{
 		return this->customer;
+	}
+	Customer* getMutableCustomer()
+	{
+		return customer;
 	}
 
 	// Constructors & Destructors
@@ -34,7 +38,7 @@ public:
 	}
 
 	// Methods
-	bool sitCustomerC(Customer* cust)
+	bool sitCustomer(Customer* cust)
 	{
 		if (cust == NULL)
 		{
@@ -50,20 +54,7 @@ public:
 		return true;
 	}
 
-	bool sitCustomer(const Customer* cust)
-	{
-		if (cust == nullptr) {
-			this->occupied = false;
-			this->customer = nullptr;
-			return false;
-		}
 
-		this->occupied = true;
-		this->customer = const_cast<Customer*>(cust);
-		return true;
-	}
-
-
-	bool operator==(Customer& cust) const;
-	bool operator==(Seat& seat) const;
+	bool operator==(const Customer& cust) const;
+	bool operator==(const Seat& seat) const;
 };

@@ -1,6 +1,6 @@
 #include "Luggage.h"
 
-double Luggage::getVolume()
+const double Luggage::getVolume() const
 {
 	return volume;
 }
@@ -13,7 +13,7 @@ bool Luggage::setvolume(double v)
 	return true;
 }
 
-double Luggage::getWeight()
+const double Luggage::getWeight() const
 {
 	return weight;
 }

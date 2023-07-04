@@ -1,6 +1,6 @@
 #include "Attendant.h"
 
-int Attendant::getFirstAidKnowledge()
+int Attendant::getFirstAidKnowledge() const
 {
 	return firstAidKnowledge;
 }
@@ -14,7 +14,7 @@ void Attendant::setFirstAidKnowledge(int firstAid)
 		firstAidKnowledge = 1;
 }
 
-Luggage* Attendant::getLuggage()
+const Luggage* Attendant::getLuggage() const
 {
 	return luggage;
 }
@@ -31,5 +31,5 @@ bool Attendant::operator==(Attendant& a)
 
 ostream& operator<<(ostream& os, const Attendant& att)
 {
-	return os << "Attendant " << (Crew&)att;
+	return os << "Attendant " << (Crew&)att << "First aid knowledge = " << att.firstAidKnowledge << endl;
 }

@@ -13,14 +13,13 @@ const static int SEATS_PER_ROW = 6;
 class Plane
 {
 private:
-	std::string model;
+	string model;
 	LinkedList<Seat*>* linkedSeats[ROWS_IN_PLANE];
 
 public:
 	// Getters & Setters
-	std::string getModel() const;
-	bool setModel(const std::string& model);
-	Seat* getSeatAt(int row, int col);
+	const string getModel() const;
+	bool setModel(const string& model);
 	Seat* getSeatAt(int row, int col) const;
 
 	void showSeats() const;
@@ -31,7 +30,7 @@ public:
 	Plane() : Plane("No Model Name")
 	{}
 
-	Plane(const string modelName)  //TODO : remove Seat* seats
+	Plane(const string modelName)
 	{
 		this->model = modelName;
 
@@ -60,9 +59,10 @@ public:
 	}
 
 	// Methods
-	Customer** getCustomers();// get an array of pointers to all customers on the plane by iterating over the seats.
-	bool addCustomer(const Customer* cust); // add to first available place. return false if plane is full
-	bool addCustomer(const Customer* cust, const int row, const int col); // add to a specific seat. return false if occupied.
+	const Customer** getCustomers() const;// get an array of pointers to all customers on the plane by iterating over the seats.
+	Customer** getCustomersMutable() const;
+	bool addCustomer(Customer* cust); // add to first available place. return false if plane is full
+	bool addCustomer(Customer* cust, const int row, const int col); // add to a specific seat. return false if occupied.
 	bool removeCustomer(Customer* cust);
 	bool removeCustomer(const string name);
 

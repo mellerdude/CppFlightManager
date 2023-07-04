@@ -12,7 +12,7 @@ private:
 
 public:
 	// Getters & Setters
-	string getWeapon();
+	const string getWeapon() const;
 	bool setWeapon(string newWeapon);
 
 	// Constructors & Destructors

@@ -42,31 +42,31 @@ public:
 	void setInMidFlyight(bool newValue);
 
 	// Getters & Setters
-	Plane* getPlane();
+	const Plane* getPlane() const;
 	void setPlane(Plane* p);
 
-	Airport* getSourceAirport();
+	const Airport* getSourceAirport() const;
 	void setSourceAirport(Airport* s);
 
-	Airport* getDestinationAirport();
+	const Airport* getDestinationAirport() const;
 	void setDestinationAirport(Airport* d);
 
-	tm* getTakeoffTime();
+	const tm* getTakeoffTime() const;
 	void setTakeoffTime(tm t);
 
-	tm* getLandingTime();
+	const tm* getLandingTime() const;
 	void setLandingTime(tm l);
 
-	Pilot* getMainPilot();
+	const Pilot* getMainPilot() const;
 	void setMainPilot(Pilot* p);
 
-	Pilot* getCoPilot();
+	const Pilot* getCoPilot() const;
 	void setCoPilot(Pilot* p);
 
-	SecurityGuard* getSecurityGuard1();
+	const SecurityGuard* getSecurityGuard1() const;
 	void setSecurityGuard1(SecurityGuard* s1);
 
-	SecurityGuard* getSecurityGuard2();
+	const SecurityGuard* getSecurityGuard2() const;
 	void setSecurityGuard2(SecurityGuard* s2);
 
 	// Constructors & Destructors
@@ -95,7 +95,7 @@ public:
 	// Attendant Methods
 	int getCurrentNumberOfAttendants();
 	vector<Attendant*> getAllAttendants();
-	Attendant* getAttendantAt(const int position);
+	const Attendant* getAttendantAt(const int position) const;
 	bool removeAttendantAt(const int position);
 	bool addAttendant(Attendant& a);
 	bool removeAttendant(Attendant& a);
@@ -109,15 +109,15 @@ public:
 
 	// Customer Methods
 	bool addCustomer(Customer& c, const int row, const int col);
-	bool removeCustomerByName(string name);
+	bool removeCustomerByName(const string name);
 	bool removeCustomerBySeat(int seatRow, int seatCol);
-	bool resitCustomerByName(string name, int seatRow, int seatColumn);
+	bool resitCustomerByName(const string name, int seatRow, int seatColumn);
 	bool resitCustomerBySeat(int oldSeatRow, int oldSeatColumn, int newSeatRow, int newSeatColumn);
-	bool changeCustomerLuggageByName(string name, Luggage* newLuggage);
+	bool changeCustomerLuggageByName(const string name, Luggage* newLuggage);
 
 	// General Flight details methods
-	void showFlight();						// show minimal details about the flight itself
-	string getStatusAt(tm& time);	// returns the state of the flight at [time]. E.G.: at 7:00 the flight has not left. at 16:00 the flight has landed.
+	void showFlight() const;						// show minimal details about the flight itself
+	const string getStatusAt(tm& time) const;	// returns the state of the flight at [time]. E.G.: at 7:00 the flight has not left. at 16:00 the flight has landed.
 
 	// Operators
 	bool operator<(tm& time) const;
