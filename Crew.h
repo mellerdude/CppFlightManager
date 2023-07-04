@@ -1,9 +1,7 @@
 #pragma once
 #pragma warning (disable : 4996)
-#include <iostream>
+#include <ostream>
 using namespace std;
-#include <stdio.h>
-#include <string.h>
 
 class Crew
 {
@@ -22,17 +20,17 @@ protected:
 
 public:
 	// Getters & Setters
-	int getEmployeeID();
-	bool setemployeeID(int eID);
+	int getEmployeeID() const;
+	bool setEmployeeID(int eID);
 
-	char* getName();
-	bool setName(char* n);
+	const char* getName() const;
+	bool setName(const char* n);
 
 	// Constructors & Destructors
 	virtual ~Crew()
 	{
-			delete[] name;
+		delete[] name;
 	}
 
-	friend ostream& operator<<(ostream& os, const Crew& crew);
+	friend std::ostream& operator<<(std::ostream& os, const Crew& crew);
 };

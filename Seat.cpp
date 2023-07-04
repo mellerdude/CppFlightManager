@@ -1,16 +1,15 @@
 #include "Seat.h"
 
-bool Seat::operator==(Customer& cust) const
-{	
-	if(this->customer != nullptr && &cust != nullptr)
-		return strcmp(customer->getTicketNumber(),cust.getTicketNumber()) == 0;
-	return false;
+bool Seat::operator==(const Customer& cust) const
+{
+    if (customer != nullptr && &cust != nullptr)
+        return strcmp(customer->getTicketNumber(), cust.getTicketNumber()) == 0;
+    return false;
 }
 
-
-bool Seat::operator==(Seat& seat) const
+bool Seat::operator==(const Seat& seat) const
 {
-	if(this->customer != nullptr && seat.getCustomer() != nullptr)
-		return strcmp(this->customer->getTicketNumber(),seat.customer->getTicketNumber()) == 0;
-	return false;
+    if (customer != nullptr && seat.getCustomer() != nullptr)
+        return strcmp(customer->getTicketNumber(), seat.getCustomer()->getTicketNumber()) == 0;
+    return false;
 }

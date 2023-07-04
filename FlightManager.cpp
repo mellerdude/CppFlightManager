@@ -391,7 +391,7 @@ void addCustomerWithSit(Flight* flight) // main > CUSTOMERS_MENU > ADD_CUSTOMERS
 	cin >> ticketNum;
 
 	cout << "Enter Luggage weight and volume (e.g.: 60.3 5.4): ";
-	cin >> luggageWeight, luggageVolume;
+	cin >> luggageWeight >> luggageVolume;
 
 	cout << "Enter a seat number:\n";
 	cout << "Row: ";
@@ -476,7 +476,7 @@ void resitCustomerByName(Flight* flight) // main > CUSTOMERS_MENU > RESIT_CUSTOM
 	newSeatRow = getUserIntegerInput(1, ROWS_IN_PLANE);
 	cout << "Column: ";
 	newSeatColumn = getUserIntegerInput(1, SEATS_PER_ROW);
-
+	cleanBuffer();
 	flight->resitCustomerByName(name, newSeatRow, newSeatColumn);
 }
 void resitCustomerBySeat(Flight* flight) // main > CUSTOMERS_MENU > RESIT_CUSTOMERS_MENU > RESIT_CUSTOMER_BY_SEAT

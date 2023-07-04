@@ -1,5 +1,5 @@
 #include "Airport.h"
-char* Airport::getIATA()
+const char* Airport::getIATA() const
 {
 	return IATA;
 }
@@ -14,7 +14,7 @@ bool Airport::setIATA(char* IATACode)
 	return true;
 }
 
-char* Airport::getCountryName()
+const char* Airport::getCountryName() const
 {
 	return countryName;
 }

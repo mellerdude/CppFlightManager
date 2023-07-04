@@ -10,7 +10,7 @@ private:
 
 public:
 	// Getters & Setters
-	int GetLicenseNumber();
+	int GetLicenseNumber() const;
 	bool setLicenseNumber(int number);
 
 	// Constructors & Destructors

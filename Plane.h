@@ -14,10 +14,10 @@ private:
 
 public:
 	// Getters & Setters
-	char* getModel() const;
-	bool setModel(char* model);
+	const char* getModel() const;
+	bool setModel(const char* model);
 
-	Seat* getSeatAt(int row, int col);
+	Seat* getSeatAt(int row, int col) const;
 
 	void showSeats() const;
 
@@ -37,21 +37,19 @@ public:
 
 	~Plane()
 	{
-		
 		for (int i = 0; i < ROWS_IN_PLANE; i++)
 			for (int j = 0; j < SEATS_PER_ROW; j++)
 				seats[i][j]->~Seat();
-		
+
 		delete[] model;
 	}
 
 	// Methods
-	Customer** getCustomers();// get an array of pointers to all customers on the plane by iterating over the seats.
-	bool addCustomer(const Customer* cust); // add to first available place. return false if plane is full
-	bool addCustomer(const Customer* cust, const int row, const int col); // add to a specific seat. return false if occupied.
+	const Customer** getCustomers() const; // get an array of pointers to all customers on the plane by iterating over the seats.
+	Customer** getCustomersMutable() const;
+	bool addCustomer(Customer* cust); // add to the first available place. return false if the plane is full.
+	bool addCustomer(Customer* cust, int row, int col); // add to a specific seat. return false if occupied.
 	bool removeCustomer(Customer* cust);
 	bool removeCustomer(const char* name);
-
 	friend ostream& operator<<(ostream& os, const Plane& plane);
-
 };

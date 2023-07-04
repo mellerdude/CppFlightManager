@@ -12,7 +12,7 @@ private:
 
 public:
 	// Getters & Setters
-	char* getWeapon();
+	const char* getWeapon() const;
 	bool setWeapon(char* newWeapon);
 
 	// Constructors & Destructors

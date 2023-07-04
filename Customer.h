@@ -14,14 +14,14 @@ protected:
 
 public:
 	// Getters & Setters
-	char* getTicketNumber();
-	bool setTicketNumber(char* ticketNum);
+	const char* getTicketNumber() const;
+	bool setTicketNumber(const char* ticketNum);
 
-	char* getName();
-	bool setName(char* n);
+	const char* getName() const;
+	bool setName(const char* n);
 
-	Luggage* getLuggage();
-	bool changeLuggage(Luggage& newluggage);
+	const Luggage* getLuggage() const;
+	bool changeLuggage(const Luggage& newluggage);
 
 	// Constructors & Destrcutrors
 	Customer(const char* newTicketNumber, const char* custName, Luggage& newLuggage)
@@ -36,8 +36,6 @@ public:
 
 	~Customer()
 	{
-		luggage->~Luggage();
-
 		delete[]ticketNumber;
 		delete[]name;
 	}

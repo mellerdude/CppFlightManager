@@ -12,10 +12,10 @@ private:
 
 public:
 	// Getters & Setters
-	char* getIATA();
+	const char* getIATA() const;
 	bool setIATA(char* IATACode);
 
-	char* getCountryName();
+	const char* getCountryName() const;
 	bool setCountryName(char* countryName);
 
 	// Constructors & Destructors

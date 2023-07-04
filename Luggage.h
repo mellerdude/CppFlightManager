@@ -10,9 +10,9 @@ private:
 
 public:
 	// Getters & Setters
-	double getVolume();
+	const double getVolume() const;
 	bool setvolume(double v);
-	double getWeight();
+	const double getWeight() const;
 	bool setWeight(double w);
 
 	// Constructors & Destructors

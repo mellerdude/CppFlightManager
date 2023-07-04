@@ -12,10 +12,10 @@ private:
 
 public:
 	// Getters & Setters
-	int getFirstAidKnowledge();
+	int getFirstAidKnowledge() const;
 	void setFirstAidKnowledge(int firstAid);
 
-	Luggage* getLuggage();
+	const Luggage* getLuggage() const;
 	void setLuggage(Luggage* l);
 
 	// Constructors & Destructors

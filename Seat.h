@@ -10,60 +10,50 @@ private:
 
 public:
 	// Getters & Setters
-	bool isOccupied()
+	bool isOccupied() const
 	{
-		return this->occupied;
+		return occupied;
 	}
-
-	Customer* getCustomer()
+	const Customer* getCustomer() const
 	{
-		return this->customer;
+		return customer;
+	}
+	Customer* getMutableCustomer()
+	{
+		return customer;
 	}
 
 	// Constructors & Destructors
 	Seat()
 	{
-		this->occupied = false;
-		this->customer = NULL;
+		occupied = false;
+		customer = NULL;
 	}
 
 	Seat(Customer* cust)
 	{
-		this->occupied = true;
-		this->customer = cust;
+		occupied = true;
+		customer = cust;
 	}
 
 	// Methods
-	bool sitCustomerC(Customer* cust)
+	bool sitCustomer(Customer* cust)
 	{
 		if (cust == NULL)
 		{
-			this->occupied = false;
-			this->customer = NULL;
+			occupied = false;
+			customer = NULL;
 
 			return false;
 		}
 
-		this->occupied = true;
-		this->customer = cust;
+		occupied = true;
+		customer = cust;
 
 		return true;
 	}
 
-	bool sitCustomer(const Customer* cust)
-	{
-		if (cust == nullptr) {
-			this->occupied = false;
-			this->customer = nullptr;
-			return false;
-		}
 
-		this->occupied = true;
-		this->customer = const_cast<Customer*>(cust);
-		return true;
-	}
-
-
-	bool operator==(Customer& cust) const;
-	bool operator==(Seat& seat) const;
+	bool operator==(const Customer& cust) const;
+	bool operator==(const Seat& seat) const;
 };

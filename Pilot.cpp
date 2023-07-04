@@ -1,6 +1,6 @@
 #include "Pilot.h"
 
-int Pilot::GetLicenseNumber()
+int Pilot::GetLicenseNumber() const
 {
 	return licenseNumber;
 }

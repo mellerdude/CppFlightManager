@@ -1,6 +1,6 @@
 #include "SecurityGuard.h"
 
-char* SecurityGuard::getWeapon()
+const char* SecurityGuard::getWeapon() const
 {
 	return weapon;
 }

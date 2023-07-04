@@ -1,11 +1,11 @@
 #include "Customer.h"
 
-char* Customer::getTicketNumber()
+const char* Customer::getTicketNumber() const
 {
 	return ticketNumber;
 }
 
-bool Customer::setTicketNumber(char* ticketNum)
+bool Customer::setTicketNumber(const char* ticketNum)
 {
 	delete[] ticketNumber;
 	ticketNumber = new char[strlen(ticketNum) + 1];
@@ -15,12 +15,12 @@ bool Customer::setTicketNumber(char* ticketNum)
 	return true;
 }
 
-char* Customer::getName()
+const char* Customer::getName() const
 {
 	return name;
 }
 
-bool Customer::setName(char* n)
+bool Customer::setName(const char* n)
 {
 	delete[] name;
 	name = new char[strlen(n) + 1];
@@ -30,12 +30,12 @@ bool Customer::setName(char* n)
 	return true;
 }
 
-Luggage* Customer::getLuggage()
+const Luggage* Customer::getLuggage() const
 {
 	return luggage;
 }
 
-bool Customer::changeLuggage(Luggage& newluggage)
+bool Customer::changeLuggage(const Luggage& newluggage)
 {
 	if (this->getLuggage() != luggage) {
 		luggage->setvolume(newluggage.getVolume());
