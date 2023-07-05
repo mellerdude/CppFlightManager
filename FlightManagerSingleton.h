@@ -57,7 +57,7 @@ class FlightManagerSingleton :FlightManagerDisplay {
     private:
         static FlightManagerSingleton* instance;
         // Private constructor to prevent direct instantiation
-		FlightManagerSingleton() {}; //TODO  : can delete?
+		FlightManagerSingleton() {};
 
     public:
 		// Static method to access the singleton instance

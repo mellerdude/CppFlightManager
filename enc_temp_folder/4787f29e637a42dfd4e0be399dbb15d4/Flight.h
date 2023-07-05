@@ -150,6 +150,7 @@ class takeOffProtocol : public State {
 public:
 	void handleTakeOffAndLanding(Flight* context) override {
 		cout << "The plane has taken off.\n" ;
+		//TODO  : same as but revrse
 		context->setInMidFlyight(false);
 	}
 };
