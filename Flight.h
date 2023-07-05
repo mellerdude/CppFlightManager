@@ -142,15 +142,15 @@ class landingProtocol : public State {
 public:
 	void handleTakeOffAndLanding(Flight* context) override {
 		cout << "The plane has completed the route\n";
-		//TODO : maybey engine 10% (on) 
-		//TODO : maybey flap open
-		//TODO  :maybey TIMER 10 sec
-		//TODO  :maybeyengine (50%)
-		// //TODO  :maybey TIMER 10 sec
-		//TODO  :maybeyengine (100%)
-		// //TODO  :maybey TIMER 10 sec
-		//TODO  :maybeyengine (80%)
-		//TODO : maybey flap close
+		//TODO :concept maybey engine 10% (on) 
+		//TODO :concept maybey flap open
+		//TODO :conceptmaybey TIMER 10 sec
+		//TODO :concept maybeyengine (50%)
+		//TODO :concept maybey TIMER 10 sec
+		//TODO :concept maybey engine (100%)
+	    //TODO :concept maybey TIMER 10 sec
+		//TODO :concept maybeyengine (80%)
+		//TODO :concept maybey flap close
 		context->setInMidFlyight(true);
 	}
 };

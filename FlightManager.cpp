@@ -21,6 +21,8 @@ int main()
 {
 	int choice = 0, numOfAttendants = 3;
     FlightManagerSingleton * Singleton = FlightManagerSingleton::getInstance();
+	AircraftFlightManagerDisplay* aircraftViewObj = new AircraftFlightManagerDisplay();
+
 	Flight flight = *Singleton->getANewFlight();
 	
 
@@ -39,7 +41,7 @@ int main()
 	do
 	{
 		//system("cls");
-		cout << "Flight Management:\n\t1 : Crew\n\t2 : Customers\n\t3 :Flight details\n\t4 :TakeOff\n\t5 :landing\n\t6 :cleanLog\n\t-1 : Exit\n";
+		cout << "Flight Management:\n\t1 : Crew\n\t2 : Customers\n\t3 :Flight details\n\t4 :TakeOff\n\t5 :landing\n\t6 :planView\n\t7 :cleanLog\n\t-1 : Exit\n";
 		choice = Singleton->getUserIntegerInput(-1, 6);
 		switch (choice)
 		{
@@ -58,6 +60,11 @@ int main()
 		case FLIGHT_LANDING :
 			Singleton->flightLandingProtocol(&flight);
 			break;
+
+		case PlANVIEW:
+			aircraftViewObj->flightDetailsMenu(&flight);
+			break;
+
 		case CLEANLOG : 
 			system("cls");
 			break;
