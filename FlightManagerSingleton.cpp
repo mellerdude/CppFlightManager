@@ -618,7 +618,7 @@ void FlightManagerSingleton::getStatusByTime(Flight* flight) // main > DETAILS_M
 	cleanBuffer();
 
 }
-void FlightManagerSingleton::flightDetailsMenu(Flight* flight) // main > DETAILS_MENU
+void FlightManagerSingleton::flightDetailsMenu(Flight* flight)  // main > DETAILS_MENU
 {
 	int choice = 0;
 
@@ -654,3 +654,5 @@ void FlightManagerSingleton::flightLandingProtocol(Flight* flight) {
 	flight->setInMidFlyightState(new takeOffProtocol());
 	flight->performStateProtocol();
 };
+
+

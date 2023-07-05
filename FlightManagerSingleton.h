@@ -30,7 +30,8 @@ static int employeeID = 0;
 #define DETAILS_MENU 3
 #define FLIGHT_TAKEOFF 4
 #define FLIGHT_LANDING 5
-#define CLEANLOG 6
+#define PlANVIEW 6
+#define CLEANLOG 7
 
 
 // inside crew menu:
@@ -42,7 +43,15 @@ static int employeeID = 0;
 #define DETAILS_AIRPORTS_MENU 1
 #define DETAILS_TIMES_MENU 2
 
-class FlightManagerSingleton {
+
+class FlightManagerDisplay { //for proxy
+public:
+	virtual void flightDetailsMenu(Flight* flight) = 0; 
+};
+
+
+
+class FlightManagerSingleton :FlightManagerDisplay {
 
 
     private:
@@ -110,10 +119,26 @@ class FlightManagerSingleton {
 		void setTime(Flight* flight, int designation);
 		void timesMenu(Flight* flight);
 		void getStatusByTime(Flight* flight);
-		void flightDetailsMenu(Flight* flight);
+		void flightDetailsMenu(Flight* flight) override;
 
 		//state : 
 		void flightTakeOffProtocol(Flight* flight);
 		void flightLandingProtocol(Flight* flight);
+};
+
+
+//proxy
+class AircraftFlightManagerDisplay : public FlightManagerDisplay {
+private:
+	FlightManagerSingleton* realFlightManger;
+public:
+
+	void flightDetailsMenu(Flight* flight) override {
+		if (realFlightManger == nullptr) {
+			realFlightManger = FlightManagerSingleton::getInstance();
+		}
+		realFlightManger->flightDetailsMenu(flight);
+	}
+
 };
 
